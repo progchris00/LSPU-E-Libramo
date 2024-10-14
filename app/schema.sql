@@ -13,6 +13,7 @@ CREATE TABLE book (
   title TEXT NOT NULL,
   category TEXT NOT NULL,
   is_borrowed INTEGER NOT NULL,
+  pages INTEGER NOT NULL,
   borrower_id INTEGER,
   FOREIGN KEY (borrower_id) REFERENCES user (id)
 );
