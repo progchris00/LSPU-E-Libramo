@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block title %} Register {% endblock %} {% block
+body %}
+<body
+  class="bg-[url('static/images/pattern-randomized.png')] bg-cover flex justify-center min-h-screen items-center"
+  style="font-family: 'Lexend', sans-serif"
+>
+  <div
+    class="w-full max-w-2xl flex md:flex-row-reverse border-2 rounded-2xl overflow-hidden shadow-xl"
+  >
+    <div class="flex-1 flex flex-col p-6 text-sm gap-6">
+      <div class="flex justify-center items-center">
+        <img
+          src="{{ url_for('static', filename='images/elib.svg')}}"
+          class="w-16"
+        />
+      </div>
+      <div>
+        <p>Welcome back!</p>
+        <h1 class="font-bold text-xl">Login to E-LIBRAMO</h1>
+      </div>
+      <form class="flex flex-col gap-6" method="POST">
+        <div class="relative">
+          <label class="absolute -top-2 left-2 bg-white text-xs" for=""
+            >Username</label
+          >
+          <input
+            class="border border-slate-800 rounded-lg p-2 w-full"
+            type="username"
+            placeholder="Username"
+            required
+            name="username"
+          />
+        </div>
+        <div class="relative">
+          <label class="absolute -top-2 left-2 bg-white text-xs" for=""
+            >Password</label
+          >
+          <input
+            class="border border-slate-800 rounded-lg p-2 w-full"
+            type="password"
+            placeholder="Password"
+            required
+            name="password"
+          />
+        </div>
+        <div class="">
+          <input
+            class="bg-blue-900 text-white w-full rounded-lg p-2"
+            type="submit"
+            value="Login"
+          />
+          <div class="min-h-4">
+            {% for message in get_flashed_messages() %}
+            <p class="text-red-700 font-semibold text-center text-xs min-h-4">
+              {{message}}
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+      </form>
+      <div class="flex text-center justify-center mt-auto">
+        <p>
+          Don't have an account yet?
+          <a href="/auth/register" class="underline text-blue-900 font-semibold"
+            >Register</a
+          >
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 md:shadow-xl w-full md:w-1/2">
+      <img
+        src="{{ url_for('static', filename='images/slideshow-1.png')}}"
+        class="w-full h-auto"
+      />
+    </div>
+  </div>
+</body>
+{% endblock %}
