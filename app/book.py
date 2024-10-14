@@ -14,4 +14,4 @@ def view():
     books = db.execute(
         'SELECT * FROM book'
     ).fetchall()
-    return render_template('books/view.html', books=books)
+    return render_template('book/view.html', books=books)
