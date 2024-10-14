@@ -6,7 +6,7 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
 
-bp = Blueprint('blog', __name__, url_prefix='/book')
+bp = Blueprint('book', __name__, url_prefix='/book')
 
 @bp.route('/view', methods=('GET', 'POST'))
 def view():
