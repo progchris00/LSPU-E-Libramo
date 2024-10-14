@@ -1,0 +1,146 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock %} {% block body %}
+<body
+  class="bg-[url('static/images/pattern-randomized.png')] bg-cover"
+  style="font-family: 'Lexend', sans-serif"
+>
+  <div class="bg-white w-full h-1/6 border-b-2 border-black-100 pb-0.5">
+    <img
+      src="{{ url_for('static', filename='images/header-logo.png')}}"
+      alt="Logo for Header"
+      class="w-32 py-3.5 pl-4"
+    />
+  </div>
+  <div class="container mx-auto h-16 max-w-6xl">
+    <div class="flex py-3">
+      <input
+        type="text"
+        placeholder="Search for books..."
+        class="w-8/12 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900"
+      />
+      <button
+        class="ml-2 px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-indigo-600"
+      >
+        Search
+      </button>
+      <div class="ml-2 relative">
+        <button
+          id="sortButton"
+          class="flex justify-center items-center ml-2 w-36 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+        >
+          <h1 id="sortText">Sort By</h1>
+          <img
+            src="{{ url_for('static', filename='images/dropdown.png')}}"
+            class="w-7"
+          />
+        </button>
+        <div
+          class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden"
+          id="dropdownMenu"
+        >
+          <a
+            href="#"
+            class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >Availability</a
+          >
+          <a
+            href="#"
+            class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >Pages</a
+          >
+          <a
+            href="#"
+            class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >Alphabetical</a
+          >
+          <a
+            href="#"
+            class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >Category</a
+          >
+        </div>
+      </div>
+      <button
+        class="flex justify-center items-center ml-2 w-36 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+        onclick="toggleDropdown()"
+      >
+        <h1>Filter By</h1>
+        <img
+          src="{{ url_for('static', filename='images/dropdown.png')}}"
+          class="w-7"
+        />
+      </button>
+      <div
+        class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden"
+        id="filterdown"
+      >
+        <div
+          class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <label class="block py-2">
+            <input type="checkbox" value="Science" class="mr-2" /> Science
+          </label>
+          <label class="block py-2">
+            <input type="checkbox" value="Medicine" class="mr-2" /> Medicine
+          </label>
+          <label class="block py-2">
+            <input type="checkbox" value="Economics" class="mr-2" /> Economics
+          </label>
+          <label class="block py-2">
+            <input type="checkbox" value="Available" class="mr-2" /> Available
+          </label>
+          <label class="block py-2">
+            <input type="checkbox" value="500+ Pages" class="mr-2" /> 500+ Pages
+          </label>
+        </div>
+        <div class="flex justify-center items-center p-2">
+          <button
+            id="get-selected"
+            class="px-4 py-2 bg-green-500 text-white rounded-md"
+            onclick="getSelectedOptions()"
+          >
+            Save
+          </button>
+        </div>
+        <div id="selected-options" class="mt-4 text-gray-700"></div>
+      </div>
+    </div>
+  </div>
+  <div class="h-12 max-w-6xl bg-black mx-auto">
+    <table class="min-w-full bg-white border border-gray-200">
+      <thead class="bg-gray-200">
+        <tr class="border-b text-center text-l">
+          <th class="p-3">Book ID</th>
+          <th class="p-3">Category</th>
+          <th class="p-3">Book Title</th>
+          <th class="p-3">Author</th>
+          <th class="p-3">Pages</th>
+          <th class="p-3">Status</th>
+        </tr>
+      </thead>
+      <tbody class="text-center py-2 px-4 border-b text-md">
+        {% for book in books %}
+        <tr class="py-2 px-4 border-b text-center text-md">
+          <td class="p-3">{{ book['id'] }}</td>
+          <td class="p-3">{{ book['category'] }}</td>
+          <td class="p-3">{{ book['title'] }}</td>
+          <td class="p-3">{{ book['author'] }}</td>
+          <td class="p-3">{{ book['pages'] }}</td>
+          <td class="p-3">
+            {% if book['is_borrowed'] == 1%}
+            <button class="bg-red-900 rounded-md text-white p-2 text-sm">
+              Borrowed
+            </button>
+            {% else %}
+            <button class="bg-green-900 rounded-md text-white p-2 text-sm">
+              Available
+            </button>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <script src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+</body>
+{% endblock %}
