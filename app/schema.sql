@@ -9,7 +9,7 @@ CREATE TABLE user (
 
 CREATE TABLE book (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  author INTEGER NOT NULL,
+  author TEXT NOT NULL,
   title TEXT NOT NULL,
   category TEXT NOT NULL,
   is_borrowed INTEGER NOT NULL,
