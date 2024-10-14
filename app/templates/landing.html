@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock %} {% block body %}
+<body
+  class="bg-[url('static/images/pattern-randomized.png')] bg-cover"
+  style="font-family: 'Lexend', sans-serif"
+>
+  <div class="bg-white w-full h-1/6 border-b-2 border-black-100 pb-0.5">
+    <img
+      src="{{ url_for('static', filename='images/header-logo.png')}}"
+      alt="Logo for Header"
+      class="w-56 py-3.5 pl-4"
+    />
+  </div>
+  <div class="flex flex-col md:flex-row items-center justify-center p-0">
+    <div class="flex flex-col text-center max-w-2xl md:text-left">
+      <h1 class="font-lexend text-3xl md:text-5xl font-medium mb-6">
+        Lorem Ipsum: The Standard Placeholder Text
+      </h1>
+      <p class="text-sm md:text-base">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor
+        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.
+      </p>
+      <a href="/auth/login"
+        ><button
+          class="rounded-lg w-96 h-11 bg-blue-900 mt-6 text-white text-lg p-0.5"
+        >
+          Get Started
+        </button></a
+      >
+    </div>
+
+    <div class="flex mt-4 md:mt-0">
+      <img
+        src="{{ url_for('static', filename='images/landing-person.png')}}"
+        class="max-w-xs md:max-w-sm"
+        alt="Person Illustration"
+      />
+    </div>
+  </div>
+</body>
+{% endblock %}
