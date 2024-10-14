@@ -3,13 +3,34 @@
   class="bg-[url('static/images/pattern-randomized.png')] bg-cover"
   style="font-family: 'Lexend', sans-serif"
 >
-  <div class="bg-white w-full h-1/6 border-b-2 border-black-100 pb-0.5">
-    <img
-      src="{{ url_for('static', filename='images/header-logo.png')}}"
-      alt="Logo for Header"
-      class="w-32 py-3.5 pl-4"
-    />
-  </div>
+  <header class="w-full border-b-2 border-black-100 flex justify-center p-2">
+    <div class="max-w-6xl w-full flex justify-between">
+      <img
+        src="{{ url_for('static', filename='images/header-logo.png')}}"
+        alt="Logo for Header"
+        class="w-32"
+      />
+      <nav class="flex items-center">
+        <ul class="flex gap-4">
+          {% if g.user %}
+          <li>
+            <a href="">{{ g.user['username'] }}</a>
+          </li>
+          <li>
+            <a href="/auth/logout">Logout</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="/auth/login">Login</a>
+          </li>
+          <li>
+            <a href="/auth/register">Register</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
   <div class="container mx-auto h-16 max-w-6xl">
     <div class="flex py-3">
       <input
