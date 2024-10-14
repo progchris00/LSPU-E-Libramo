@@ -26,4 +26,8 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    @app.route('/')
+    def landing_page():
+        return render_template('landing.html')
+
     return app
