@@ -6,12 +6,12 @@ from werkzeug.exceptions import abort
 from app.auth import login_required
 from app.db import get_db
 
-bp = Blueprint('book', __name__, url_prefix='/book')
+bp = Blueprint('book', __name__)
 
-@bp.route('/view', methods=('GET', 'POST'))
-def view():
+@bp.route('/books')
+def index():
     db = get_db()
     books = db.execute(
         'SELECT * FROM book'
     ).fetchall()
-    return render_template('book/view.html', books=books)
+    return render_template('book/index.html', books=books)
