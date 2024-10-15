@@ -4,34 +4,50 @@
   style="font-family: 'Lexend', sans-serif"
 >
   <header class="w-full border-b-2 border-black-100 flex justify-center p-2">
-    <div class="max-w-6xl w-full flex justify-between">
+    <div class="max-w-6xl w-full flex justify-between relative">
       <img
         src="{{ url_for('static', filename='images/header-logo.png')}}"
         alt="Logo for Header"
         class="w-32"
       />
       <nav class="flex items-center">
+        {% if g.user %}
+        <button id="profile-menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+          </svg>
+        </button>
+        <div
+          class="flex flex-col rounded-md border-black absolute bg-blue-900 text-white p-2 top-10 right-0 w-44 z-10 hidden"
+        >
+          <a class="p-2" href="/profile">Profile</a>
+          <a class="p-2" href="/auth/logout">Logout</a>
+        </div>
+        {% else %}
         <ul class="flex gap-4">
-          {% if g.user %}
-          <li>
-            <a href="">{{ g.user['username'] }}</a>
-          </li>
-          <li>
-            <a href="/auth/logout">Logout</a>
-          </li>
-          {% else %}
           <li>
             <a href="/auth/login">Login</a>
           </li>
           <li>
             <a href="/auth/register">Register</a>
           </li>
-          {% endif %}
         </ul>
+        {% endif %}
       </nav>
     </div>
   </header>
-  <div class="container mx-auto h-16 max-w-6xl">
+  <div class="container mx-auto max-w-6xl">
     <div class="flex py-3">
       <input
         type="text"
@@ -126,7 +142,7 @@
       </div>
     </div>
   </div>
-  <div class="h-12 max-w-6xl bg-black mx-auto">
+  <div class="max-w-6xl bg-black mx-auto">
     <table class="min-w-full bg-white border border-gray-200">
       <thead class="bg-gray-200">
         <tr class="border-b text-center text-l">
