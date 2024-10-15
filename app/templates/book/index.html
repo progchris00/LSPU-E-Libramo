@@ -10,8 +10,9 @@
         alt="Logo for Header"
         class="w-32"
       />
-      <nav class="flex items-center">
+      <nav class="flex items-center gap-4">
         {% if g.user %}
+        <p>Hello, {{ g.user['username'] }}</p>
         <button id="profile-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
