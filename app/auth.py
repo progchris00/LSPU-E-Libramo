@@ -36,6 +36,9 @@ def register():
         
         flash(error)
 
+    if g.user:
+        return redirect(url_for('book.index'))
+
     return render_template('auth/register.html')
 
 @bp.route('/login', methods=('GET', 'POST'))
@@ -60,6 +63,9 @@ def login():
             return redirect(url_for('book.index'))
         
         flash(error)
+
+    if g.user:
+        return redirect(url_for('book.index'))
     
     return render_template('auth/login.html')
 
