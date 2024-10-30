@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block title %} Home {% endblock %} {% block body %}
-<body class="bg-cool-navy-800 text-cool-gray-400 font-inter">
-  <header class="w-full flex justify-center p-2">
+<body class="font-inter bg-site-bg text-custom-white text-sm">
+  <header class="w-full flex justify-center p-4">
     <div class="max-w-6xl w-full flex justify-between relative">
       <img
         src="{{ url_for('static', filename='images/header-logo.png')}}"
@@ -84,8 +84,9 @@
       </nav>
     </div>
   </header>
-  <div class="p-4 bg-cool-navy-800">
-    <div class="p-4 bg-cool-navy-700 rounded-2xl shadow-custom">
+  <div class="px-4">
+    <div class="p-4 rounded-2xl shadow-custom bg-table">
+      <h1 class="text-center text-2xl mb-2 font-bold">List of Books</h1>
       <div class="max-w-7xl mx-auto">
         <div class="flex py-3">
           <input
@@ -184,11 +185,9 @@
           </div>
         </div>
       </div>
-      <table
-        class="w-full bg-cool-navy-700 rounded-2xl overflow-hidden text-sm shadow-custom"
-      >
-        <thead class="">
-          <tr class="text-center bg-cool-navy-400 text-cool-gray">
+      <table class="w-full rounded-2xl overflow-hidden text-sm shadow-custom">
+        <thead class="bg-thead">
+          <tr class="text-left">
             <th class="p-3 rounded-l-xl font-semibold" scope="col">Book ID</th>
             <th class="p-3 font-semibold" scope="col">Category</th>
             <th class="p-3 font-semibold" scope="col">Book Title</th>
@@ -197,21 +196,21 @@
             <th class="p-3 font-semibold rounded-r-xl" scope="col">Status</th>
           </tr>
         </thead>
-        <tbody class="text-center text-md">
+        <tbody class="text-left text-md">
           {% for book in books %}
-          <tr class="py-2 px-4 text-center text-md">
-            <td class="p-1.5">{{ book['id'] }}</td>
-            <td class="p-1.5">{{ book['category'] }}</td>
-            <td class="p-1.5">{{ book['title'] }}</td>
-            <td class="p-1.5">{{ book['author'] }}</td>
-            <td class="p-1.5">{{ book['pages'] }}</td>
-            <td class="p-1.5">
+          <tr class="py-2 px-4 text-md">
+            <td class="px-3 py-1.5">{{ book['id'] }}</td>
+            <td class="px-3 py-1.5">{{ book['category'] }}</td>
+            <td class="px-3 py-1.5">{{ book['title'] }}</td>
+            <td class="px-3 py-1.5">{{ book['author'] }}</td>
+            <td class="px-3 py-1.5">{{ book['pages'] }}</td>
+            <td class="px-3 py-1.5">
               {% if book['is_borrowed'] == 1%}
-              <button class="bg-cool-red rounded-md text-white p-2">
+              <button class="rounded-md p-2 text-warning-600 bg-warning">
                 Borrowed
               </button>
               {% else %}
-              <button class="bg-cool-green rounded-md text-white p-2">
+              <button class="rounded-md p-2 text-success-600 bg-success">
                 Available
               </button>
               {% endif %}
