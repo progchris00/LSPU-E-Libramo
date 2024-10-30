@@ -657,6 +657,10 @@ video {
   height: 2.75rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .h-auto {
   height: auto;
 }
@@ -751,14 +755,6 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
-}
-
-.overflow-x-auto {
-  overflow-x: auto;
-}
-
-.overflow-y-auto {
-  overflow-y: auto;
 }
 
 .rounded-2xl {
@@ -1050,6 +1046,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-thead-light {
+  --tw-text-opacity: 1;
+  color: rgb(241 242 246 / var(--tw-text-opacity));
 }
 
 .underline {
