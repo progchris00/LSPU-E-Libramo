@@ -88,23 +88,55 @@
     <div class="p-4 rounded-2xl shadow-custom bg-table-light">
       <h1 class="text-center text-2xl mb-2 font-bold">List of Books</h1>
       <div class="max-w-7xl mx-auto">
-        <div class="flex py-3">
+        <div class="flex items-center py-3 justify-between">
           <input
             type="text"
             placeholder="Search for books..."
-            class="w-8/12 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900"
+            class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full max-w-xs"
           />
-          <button
-            class="ml-2 px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-indigo-600"
-          >
-            Search
-          </button>
-          <div class="ml-2 relative">
+          <div class="flex gap-2">
+            <div class="">
+              <button
+                id="sortButton"
+                class="flex justify-center items-center px-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+              >
+                <span>Sort</span>
+                <img
+                  src="{{ url_for('static', filename='images/dropdown.png')}}"
+                  class="w-7"
+                />
+              </button>
+              <div
+                class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden"
+                id="dropdownMenu"
+              >
+                <a
+                  href="#"
+                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >Availability</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >Pages</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >Alphabetical</a
+                >
+                <a
+                  href="#"
+                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >Category</a
+                >
+              </div>
+            </div>
             <button
-              id="sortButton"
-              class="flex justify-center items-center ml-2 w-36 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+              class="flex justify-center items-center px-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+              onclick="toggleDropdown()"
             >
-              <span>Sort by</span>
+              <span>Filter</span>
               <img
                 src="{{ url_for('static', filename='images/dropdown.png')}}"
                 class="w-7"
@@ -112,76 +144,42 @@
             </button>
             <div
               class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden"
-              id="dropdownMenu"
+              id="filterdown"
             >
-              <a
-                href="#"
-                class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >Availability</a
+              <div
+                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               >
-              <a
-                href="#"
-                class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >Pages</a
-              >
-              <a
-                href="#"
-                class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >Alphabetical</a
-              >
-              <a
-                href="#"
-                class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >Category</a
-              >
+                <label class="block py-2">
+                  <input type="checkbox" value="Science" class="mr-2" /> Science
+                </label>
+                <label class="block py-2">
+                  <input type="checkbox" value="Medicine" class="mr-2" />
+                  Medicine
+                </label>
+                <label class="block py-2">
+                  <input type="checkbox" value="Economics" class="mr-2" />
+                  Economics
+                </label>
+                <label class="block py-2">
+                  <input type="checkbox" value="Available" class="mr-2" />
+                  Available
+                </label>
+                <label class="block py-2">
+                  <input type="checkbox" value="500+ Pages" class="mr-2" /> 500+
+                  Pages
+                </label>
+              </div>
+              <div class="flex justify-center items-center p-2">
+                <button
+                  id="get-selected"
+                  class="px-4 py-2 bg-green-500 text-white rounded-md"
+                  onclick="getSelectedOptions()"
+                >
+                  Save
+                </button>
+              </div>
+              <div id="selected-options" class="mt-4 text-gray-700"></div>
             </div>
-          </div>
-          <button
-            class="flex justify-center items-center ml-2 w-36 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-            onclick="toggleDropdown()"
-          >
-            <span>Filter by</span>
-            <img
-              src="{{ url_for('static', filename='images/dropdown.png')}}"
-              class="w-7"
-            />
-          </button>
-          <div
-            class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden"
-            id="filterdown"
-          >
-            <div
-              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-            >
-              <label class="block py-2">
-                <input type="checkbox" value="Science" class="mr-2" /> Science
-              </label>
-              <label class="block py-2">
-                <input type="checkbox" value="Medicine" class="mr-2" /> Medicine
-              </label>
-              <label class="block py-2">
-                <input type="checkbox" value="Economics" class="mr-2" />
-                Economics
-              </label>
-              <label class="block py-2">
-                <input type="checkbox" value="Available" class="mr-2" />
-                Available
-              </label>
-              <label class="block py-2">
-                <input type="checkbox" value="500+ Pages" class="mr-2" /> 500+
-                Pages
-              </label>
-            </div>
-            <div class="flex justify-center items-center p-2">
-              <button
-                id="get-selected"
-                class="px-4 py-2 bg-green-500 text-white rounded-md"
-                onclick="getSelectedOptions()"
-              >
-                Save
-              </button>
-            </div>
-            <div id="selected-options" class="mt-4 text-gray-700"></div>
           </div>
         </div>
       </div>
