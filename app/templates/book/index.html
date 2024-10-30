@@ -92,6 +92,7 @@
           <form action="books/search" method="get">
             <input
               type="text"
+              id="search-box"
               name="q"
               placeholder="Search for books..."
               class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full max-w-xs"
@@ -197,9 +198,9 @@
             <th class="p-3 font-semibold rounded-r-xl" scope="col">Status</th>
           </tr>
         </thead>
-        <tbody class="text-left text-md">
+        <tbody class="text-left text-md" id="books-container">
           {% for book in books %}
-          <tr class="py-2 px-4 text-md">
+          <tr class="py-2 px-4 text-md"">
             <td class="px-3 py-1.5">{{ book['id'] }}</td>
             <td class="px-3 py-1.5">{{ book['category'] }}</td>
             <td class="px-3 py-1.5">{{ book['title'] }}</td>
