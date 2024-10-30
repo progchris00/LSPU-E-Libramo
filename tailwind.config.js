@@ -4,14 +4,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "site-bg": "#050d1a",
-        table: "#0d111d",
-        thead: "#171b26",
+        // dark theme
+        "site-dark": "#050d1a",
+        "table-dark": "#0d111d",
+        "thead-dark": "#171b26",
+        "font-dark": "#f1f9f8",
+
+        // light theme
+        "site-light": "#f3f4f8",
+        "table-light": "#ffffff",
+        "thead-light": "#f1f2f6",
+        "heading-light": "#65676b",
+        "primary-light": "#050505",
+
+        // Alerts
         "success-600": "#74dfa2",
         success: "#133a30",
         "warning-600": "#f31260",
         warning: "#3f1630",
-        "custom-white": "#f1f9f8",
       },
       boxShadow: {
         custom:
