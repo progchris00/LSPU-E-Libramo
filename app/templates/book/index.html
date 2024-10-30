@@ -197,26 +197,7 @@
           </tr>
         </thead>
         <tbody class="text-left text-md" id="books-container">
-          {% for book in books %}
-          <tr class="py-2 px-4 text-md">
-            <td class="px-3 py-1.5">{{ book['id'] }}</td>
-            <td class="px-3 py-1.5">{{ book['category'] }}</td>
-            <td class="px-3 py-1.5">{{ book['title'] }}</td>
-            <td class="px-3 py-1.5">{{ book['author'] }}</td>
-            <td class="px-3 py-1.5">{{ book['pages'] }}</td>
-            <td class="px-3 py-1.5">
-              {% if book['is_borrowed'] == 1%}
-              <button class="rounded-md p-2 text-warning-600 bg-warning">
-                Borrowed
-              </button>
-              {% else %}
-              <button class="rounded-md p-2 text-success-600 bg-success">
-                Available
-              </button>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
+          {% include 'book/partials/books-table.html' %}
         </tbody>
       </table>
     </div>
