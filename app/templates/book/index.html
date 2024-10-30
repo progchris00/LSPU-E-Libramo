@@ -89,11 +89,14 @@
       <h1 class="text-center text-2xl mb-2 font-bold">List of Books</h1>
       <div class="max-w-7xl mx-auto">
         <div class="flex items-center py-3 justify-between">
-          <input
-            type="text"
-            placeholder="Search for books..."
-            class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full max-w-xs"
-          />
+          <form action="books/search" method="get">
+            <input
+              type="text"
+              name="q"
+              placeholder="Search for books..."
+              class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full max-w-xs"
+            />
+          </form>
           <div class="flex gap-2">
             <div class="">
               <button

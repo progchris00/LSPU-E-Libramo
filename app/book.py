@@ -15,3 +15,12 @@ def index():
         'SELECT * FROM book'
     ).fetchall()
     return render_template('book/index.html', books=books)
+
+@bp.route("/search")
+def search():
+    db = get_db()
+    query = request.args.get("q")
+    books = db.execute(
+        'SELECT * FROM book WHERE title LIKE ?', (f"%{query}%",)
+    ).fetchall()
+    return render_template('book/index.html', books=books)
