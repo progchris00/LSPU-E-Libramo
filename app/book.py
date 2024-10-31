@@ -25,3 +25,16 @@ def search():
     books_list = [dict(book) for book in books]
 
     return render_template("book/partials/books-table.html", books=books)
+
+@bp.route("/<title>/view", methods=("GET", "POST"))
+def view(title):
+    book = get_book(title.replace("-", " "))
+    return render_template("book/view.html", book=book)
+
+def get_book(title):
+    book = get_db().execute("SELECT * FROM book WHERE lower(title) = ?", (title,)).fetchone()
+
+    if book is None:
+        abort(404, f"Book with title {title} cannot be found.")
+    
+    return book
