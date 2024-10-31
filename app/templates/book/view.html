@@ -14,11 +14,11 @@
     <div class="flex flex-col p-6 gap-4 md:w-2/3">
       <div class="flex flex-row items-center">
         {% if book["is_borrowed"] == 1%}
-        <button class="bg-green-900 rounded-md text-white w-24 p-2 text-sm">
+        <button class="bg-red-900 rounded-md text-white w-24 p-2 text-sm">
           Avaiable
         </button>
         {% else %}
-        <button class="bg-red-900 rounded-md text-white w-24 p-2 text-sm">
+        <button class="bg-green-900 rounded-md text-white w-24 p-2 text-sm">
           Borrowed
         </button>
         {% endif %}
@@ -45,14 +45,14 @@
       <div class="flex justify-center items-center m-5">
         {% if book["is_borrowed"] == 1 %}
         <button
-          class="bg-blue-900 w-full md:w-72 p-2 rounded-md text-white hover:bg-blue-500"
+          class="bg-gray-300 w-full md:w-72 p-2 rounded-md text-gray-500 cursor-not-allowed"
+          disabled
         >
           Borrow Now
         </button>
         {% else %}
         <button
-          class="bg-gray-300 w-full md:w-72 p-2 rounded-md text-gray-500 cursor-not-allowed"
-          disabled
+          class="bg-blue-900 w-full md:w-72 p-2 rounded-md text-white hover:bg-blue-500"
         >
           Borrow Now
         </button>
