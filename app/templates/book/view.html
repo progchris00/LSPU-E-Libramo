@@ -1,4 +1,58 @@
 {% extends 'base.html' %} {% block title %} {{ book['title'] }} {% endblock %}
 {% block body %}
-<h1>{{ book['title'] }}</h1>
+<body class="flex justify-center items-center h-screen m-0 bg-gray-50">
+  <div
+    class="container mx-auto max-w-5xl flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden"
+  >
+    <div class="flex justify-center items-center bg-blue-900 p-4 md:w-1/3">
+      <img
+        src="bookcover.png"
+        alt="Book Cover"
+        class="max-w-full h-auto p-2 bg-white rounded-lg"
+      />
+    </div>
+    <div class="flex flex-col p-6 gap-4 md:w-2/3">
+      <div class="flex flex-row items-center">
+        <button class="bg-green-900 rounded-md text-white w-24 p-2 text-sm">
+          Avaiable
+        </button>
+        <button class="bg-red-900 rounded-md text-white w-24 p-2 text-sm">
+          Borrowed
+        </button>
+        <h1 class="ml-3 text-2xl font-bold">Lorem ipsum dolor sit amet.</h1>
+      </div>
+      <div>
+        <h2 class="font-semibold">Authors:</h2>
+        <p>Author Name</p>
+      </div>
+      <div>
+        <h2 class="font-semibold">Genre:</h2>
+        <p>Genre Name</p>
+      </div>
+      <div class="text-justify">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+          dolore in perferendis voluptates odit explicabo voluptatibus facere
+          reprehenderit. Nostrum, odit maxime magnam numquam natus perspiciatis
+          quia quod. Aliquam, iste eaque numquam adipisci eius at quos enim
+          corrupti, reprehenderit dolor similique, blanditiis hic optio ipsum
+          odit? Illo a asperiores ab ut?
+        </p>
+      </div>
+      <div class="flex justify-center items-center m-5">
+        <button
+          class="bg-blue-900 w-full md:w-72 p-2 rounded-md text-white hover:bg-blue-500"
+        >
+          Borrow Now
+        </button>
+        <button
+          class="bg-gray-300 w-full md:w-72 p-2 rounded-md text-gray-500 cursor-not-allowed"
+          disabled
+        >
+          Borrow Now
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
 {% endblock %}
