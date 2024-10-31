@@ -2,7 +2,12 @@
 <tr class="text-md">
   <td class="px-3 py-1.5">{{ book['id'] }}</td>
   <td class="px-3 py-1.5">{{ book['category'] }}</td>
-  <td class="px-3 py-1.5">{{ book['title'] }}</td>
+  <td class="px-3 py-1.5">
+    <a
+      href="{{ url_for('book.view', title=book['title'].replace(' ','-').lower()) }}"
+      >{{ book['title'] }}</a
+    >
+  </td>
   <td class="px-3 py-1.5">{{ book['author'] }}</td>
   <td class="px-3 py-1.5">{{ book['pages'] }}</td>
   <td class="px-3 py-1.5">
