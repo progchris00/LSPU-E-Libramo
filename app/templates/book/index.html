@@ -9,7 +9,7 @@
       />
       <nav class="flex items-center gap-4">
         {% if g.user %}
-        <p>Hello, {{ g.user['username'] }}</p>
+        <p>Hello, {{ g.user['username'].capitalize() }}</p>
         <button id="profile-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
