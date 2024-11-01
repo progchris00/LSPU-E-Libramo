@@ -12,9 +12,15 @@
   <td class="px-3 py-1.5">{{ book['pages'] }}</td>
   <td class="px-3 py-1.5">
     {% if book['is_borrowed'] == 1%}
-    <button class="rounded-md p-2 text-warning-600 bg-warning">Borrowed</button>
+    <button
+      class="rounded-md min-w-20 p-1 border border-red-600 text-red-600 bg-red-200"
+    >
+      Borrowed
+    </button>
     {% else %}
-    <button class="rounded-md p-2 text-success-600 bg-success">
+    <button
+      class="rounded-md min-w-20 p-1 font-semibold border border-green-600 text-green-600 bg-green-200"
+    >
       Available
     </button>
     {% endif %}
