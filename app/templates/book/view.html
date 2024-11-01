@@ -15,11 +15,11 @@
       <div class="flex flex-row items-center">
         {% if book["is_borrowed"] == 1%}
         <button class="bg-red-900 rounded-md text-white w-24 p-2 text-sm">
-          Avaiable
+          Borrowed
         </button>
         {% else %}
         <button class="bg-green-900 rounded-md text-white w-24 p-2 text-sm">
-          Borrowed
+          Available
         </button>
         {% endif %}
         <h1 class="ml-3 text-2xl font-bold">{{ book["title"] }}</h1>
