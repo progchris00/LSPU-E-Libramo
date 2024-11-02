@@ -11,9 +11,17 @@ bp = Blueprint('book', __name__, url_prefix='/books')
 @bp.route('')
 def index():
     db = get_db()
-    books = db.execute(
-        'SELECT * FROM book'
-    ).fetchall()
+
+    if g.user is None:
+        books = db.execute(
+            'SELECT * FROM book'
+        ).fetchall()
+    else:
+        all_books = db.execute("SELECT * FROM book").fetchall()
+        target_books = [book for book in all_books if book["category"] == "Technology"]
+        other_books = [book for book in all_books if book["category"] != "Technology"]
+        books = target_books + other_books
+
     return render_template('book/index.html', books=books)
 
 @bp.route("/search")
