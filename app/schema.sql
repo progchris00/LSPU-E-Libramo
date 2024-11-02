@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS book;
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
+  course Text NOT NULL,
   password TEXT NOT NULL
 );
 
@@ -16,5 +17,6 @@ CREATE TABLE book (
   pages INTEGER NOT NULL,
   borrower_id INTEGER,
   cover TEXT,
+  rating INTEGER,
   FOREIGN KEY (borrower_id) REFERENCES user (id)
 );
