@@ -99,46 +99,8 @@
             class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full max-w-xs"
           />
           <div class="flex gap-2">
-            <div class="">
-              <button
-                id="sortButton"
-                class="flex justify-center items-center px-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-              >
-                <span>Sort</span>
-                <img
-                  src="{{ url_for('static', filename='images/dropdown.png')}}"
-                  class="w-7"
-                />
-              </button>
-              <div
-                class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden"
-                id="dropdownMenu"
-              >
-                <a
-                  href="#"
-                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >Availability</a
-                >
-                <a
-                  href="#"
-                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >Pages</a
-                >
-                <a
-                  href="#"
-                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >Alphabetical</a
-                >
-                <a
-                  href="#"
-                  class="dropdown-item block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >Category</a
-                >
-              </div>
-            </div>
             <button
-              class="flex justify-center items-center px-2 rounded-md text-white bg-blue-800 hover:bg-blue-900"
-              onclick="toggleDropdown()"
+              class="flex justify-center items-center px-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
             >
               <span>Filter</span>
               <img
