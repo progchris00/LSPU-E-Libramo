@@ -58,34 +58,44 @@ def measure_time_and_memory(sort_function, array):
     end_time = time.time()  # Record the end time.
     return sort_function(array), end_time - start_time, max(mem_usage) - min(mem_usage)  # Return function output, execution time, and memory usage.
 
-def cocktailSort(a):
-	n = len(a)
-	swapped = True
-	start = 0
-	end = n-1
-	while (swapped == True):
+def cocktail_sort(data, key):
+    """
+    Sorts the list of dictionary-like rows by the specified key using cocktail sort.
+    
+    Parameters:
+    data (list): List of rows (each row is a dictionary-like object)
+    key (str): The key to sort by (e.g., 'title' or 'author')
+    
+    Returns:
+    list: Sorted list of rows
+    """
+    n = len(data)
+    swapped = True
+    start = 0
+    end = n - 1
+    
+    while swapped:
+        swapped = False
+        
+        for i in range(start, end):
+            if data[i][key] > data[i + 1][key]:
+                data[i], data[i + 1] = data[i + 1], data[i]
+                swapped = True
 
-		swapped = False
+        if not swapped:
+            break
 
-		# sort
-		for i in range(start, end):
-			if (a[i] > a[i + 1]):
-				a[i], a[i + 1] = a[i + 1], a[i]
-				swapped = True
+        end -= 1
 
-		if (swapped == False):
-			break
-
-		swapped = False
-
-		end = end-1
-
-		for i in range(end-1, start-1, -1):
-			if (a[i] > a[i + 1]):
-				a[i], a[i + 1] = a[i + 1], a[i]
-				swapped = True
-
-		start = start + 1
+        swapped = False
+ 
+        for i in range(end, start, -1):
+            if data[i][key] < data[i - 1][key]:
+                data[i], data[i - 1] = data[i - 1], data[i]
+                swapped = True
+        start += 1
+    
+    return data
 
 def odd_even_sort(arr, n):
 
