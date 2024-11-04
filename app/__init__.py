@@ -29,6 +29,8 @@ def create_app(test_config=None):
     from . import book
     app.register_blueprint(book.bp)
 
+    from . import sorting_algo
+
     @app.route('/')
     def landing_page():
         return render_template('landing.html')

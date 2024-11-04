@@ -5,11 +5,18 @@ from werkzeug.exceptions import abort
 
 from app.auth import login_required
 from app.db import get_db
+from app.sorting_algo import *
 
 bp = Blueprint('book', __name__, url_prefix='/books')
 
 @bp.route('')
 def index():
+    course_mapping = {
+        "BSCS" : "Technology",
+        "BSA" : "Accounting",
+        "BSP" : "Psychology"
+    }
+
     db = get_db()
 
     if g.user is None:
@@ -17,10 +24,16 @@ def index():
             'SELECT * FROM book'
         ).fetchall()
     else:
+        course = g.user["course"]
         all_books = db.execute("SELECT * FROM book").fetchall()
-        target_books = [book for book in all_books if book["category"] == "Technology"]
-        other_books = [book for book in all_books if book["category"] != "Technology"]
-        books = target_books + other_books
+
+        target_books = [book for book in all_books if book["category"] == course_mapping[course]]
+        other_books = [book for book in all_books if book["category"] != course_mapping[course]]
+
+        sorted_target_books = cocktail_sort(target_books, "rating")
+        sorted_other_books = cocktail_sort(other_books, "rating")
+
+        books = sorted_target_books + other_books
 
     return render_template('book/index.html', books=books)
 

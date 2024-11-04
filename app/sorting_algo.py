@@ -1,7 +1,7 @@
-from binarytree import Node  # Import the Node class from the binarytree module to represent nodes in the tree.
-import array as arr  # Import the array module for creating efficient array data structures.
-from memory_profiler import memory_usage  # Import memory_usage to monitor memory consumption of functions.
-import time  # Import time module to measure execution time.
+# from binarytree import Node  # Import the Node class from the binarytree module to represent nodes in the tree.
+# import array as arr  # Import the array module for creating efficient array data structures.
+# from memory_profiler import memory_usage  # Import memory_usage to monitor memory consumption of functions.
+# import time  # Import time module to measure execution time.
 
 # Define a class for tree nodes.
 class TreeNode:
