@@ -11,31 +11,27 @@ bp = Blueprint('book', __name__, url_prefix='/books')
 
 @bp.route('')
 def index():
-    course_mapping = {
-        "BSCS" : "Technology",
-        "BSA" : "Accounting",
-        "BSP" : "Psychology"
-    }
-
     db = get_db()
 
     if g.user is None:
         books = db.execute(
             'SELECT * FROM book'
         ).fetchall()
+        target_category = None
     else:
         course = g.user["course"]
+        target_category = get_target_category(course)
         all_books = db.execute("SELECT * FROM book").fetchall()
 
-        target_books = [book for book in all_books if book["category"] == course_mapping[course]]
-        other_books = [book for book in all_books if book["category"] != course_mapping[course]]
+        target_books = [book for book in all_books if book["category"] == target_category]
+        other_books = [book for book in all_books if book["category"] != target_category]
 
         sorted_target_books = cocktail_sort(target_books, "rating")
         sorted_other_books = cocktail_sort(other_books, "rating")
 
         books = sorted_target_books + other_books
 
-    return render_template('book/index.html', books=books)
+    return render_template('book/index.html', books=books, target_category=target_category)
 
 @bp.route("/search")
 def search():
@@ -59,3 +55,12 @@ def get_book(title):
         abort(404, f"Book with title {title} cannot be found.")
     
     return book
+
+def get_target_category(course):
+    course_mapping = {
+        "BSCS" : "Technology",
+        "BSA" : "Accounting",
+        "BSP" : "Psychology"
+    }
+
+    return course_mapping[course]

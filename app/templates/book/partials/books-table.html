@@ -5,7 +5,7 @@
   <td class="px-3 py-1.5">
     <a
       href="{{ url_for('book.view', title=book['title'].replace(' ','-').lower()) }}"
-      >{{ book['title'] }} {% if book["category"] == "Technology" %}
+      >{{ book['title'] }} {% if book["category"] == target_category %}
       <span
         class="border border-gray-400 rounded-lg px-2 p-1 text-xs text-gray-500 italic"
         >recommended</span
