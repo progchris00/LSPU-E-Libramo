@@ -98,53 +98,33 @@
             placeholder="Search for books..."
             class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full max-w-xs"
           />
-          <div class="flex gap-2">
+          <div class="relative">
             <button
               class="flex justify-center items-center px-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
             >
-              <span>Filter</span>
+              <span>Sort title by</span>
               <img
                 src="{{ url_for('static', filename='images/dropdown.png')}}"
                 class="w-7"
               />
             </button>
             <div
-              class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden"
-              id="filterdown"
+              class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
+              id="sort-dropdown"
             >
-              <div
-                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-              >
-                <label class="block py-2">
-                  <input type="checkbox" value="Science" class="mr-2" /> Science
-                </label>
-                <label class="block py-2">
-                  <input type="checkbox" value="Medicine" class="mr-2" />
-                  Medicine
-                </label>
-                <label class="block py-2">
-                  <input type="checkbox" value="Economics" class="mr-2" />
-                  Economics
-                </label>
-                <label class="block py-2">
-                  <input type="checkbox" value="Available" class="mr-2" />
-                  Available
-                </label>
-                <label class="block py-2">
-                  <input type="checkbox" value="500+ Pages" class="mr-2" /> 500+
-                  Pages
-                </label>
+              <div>
+                <ul>
+                  <li class="p-2 hover:bg-gray-100">
+                    <a href="">Cocktail sort</a>
+                  </li>
+                  <li class="p-2 hover:bg-gray-100">
+                    <a href="">Insertion sort</a>
+                  </li>
+                  <li class="p-2 hover:bg-gray-100">
+                    <a href="">Tree sort</a>
+                  </li>
+                </ul>
               </div>
-              <div class="flex justify-center items-center p-2">
-                <button
-                  id="get-selected"
-                  class="px-4 py-2 bg-green-500 text-white rounded-md"
-                  onclick="getSelectedOptions()"
-                >
-                  Save
-                </button>
-              </div>
-              <div id="selected-options" class="mt-4 text-gray-700"></div>
             </div>
           </div>
         </div>
