@@ -1,3 +1,4 @@
+import time
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 )
@@ -48,6 +49,13 @@ def view(title):
     book = get_book(title.replace("-", " "))
     return render_template("book/view.html", book=book)
 
+@bp.route("/sort/<sortingType>")
+def sort(sortingType):
+    start_time = time.time()
+    books = get_sorted_book(sortingType)
+    time_execution = time.time() - start_time
+    return render_template("book/index.html", books=books, time_execution=time_execution)
+
 def get_book(title):
     book = get_db().execute("SELECT * FROM book WHERE lower(title) = ?", (title,)).fetchone()
 
@@ -64,3 +72,11 @@ def get_target_category(course):
     }
 
     return course_mapping[course]
+
+def get_sorted_book(sortingName):
+    db = get_db()
+    books = db.execute("SELECT * FROM book").fetchall()
+    books = [book for book in books]
+
+    if sortingName == "cocktail":
+        return cocktail_sort(books, "title")

@@ -17,3 +17,9 @@ searchBox.addEventListener("input", async function () {
 
   booksContainer.innerHTML += html;
 });
+
+const sortDropdown = document.getElementById("sort-dropdown");
+const sortButton = document.getElementById("sort-button");
+sortButton?.addEventListener("click", () => {
+  sortDropdown.classList.toggle("hidden");
+});
