@@ -76,7 +76,6 @@ def get_target_category(course):
 def get_sorted_book(sortingName):
     db = get_db()
     books = db.execute("SELECT * FROM book").fetchall()
-    print(books)
     books = [book for book in books]
 
     if sortingName == "cocktail":
