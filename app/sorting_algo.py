@@ -1,4 +1,3 @@
-
 def cocktail_sort(data, key):
     """
     Sorts the list of dictionary-like rows by the specified key using cocktail sort.
@@ -90,10 +89,10 @@ class TreeSort:
             books.append(node.book)
             self._inorder(node.right, books)
 
-def tree_sort_books(book_data, key):
+def tree_sort_books(data, key):
     tree = TreeSort(key)
     
-    for book in book_data:
+    for book in data:
         tree.insert(book)
     
     sorted_books = tree.inorder()
