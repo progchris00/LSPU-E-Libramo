@@ -28,5 +28,11 @@ $ flask --app app init-db
 6. Populate database using a python script
 
 ```bash
-$ python .\dummy_data_script.py
+$ python .\populate_db.py
+```
+
+7. Run local server
+
+```bash
+$ flask run --debug
 ```
