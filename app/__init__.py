@@ -2,7 +2,6 @@ import os
 
 from flask import Flask, render_template
 
-
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
@@ -29,7 +28,7 @@ def create_app(test_config=None):
     from . import book
     app.register_blueprint(book.bp)
 
-    from . import sorting_algo
+    from . import sorts
 
     @app.route('/')
     def landing_page():

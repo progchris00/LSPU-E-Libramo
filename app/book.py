@@ -6,7 +6,7 @@ from werkzeug.exceptions import abort
 
 from app.auth import login_required
 from app.db import get_db
-from app.sorting_algo import *
+from app.sorts import *
 
 bp = Blueprint('book', __name__, url_prefix='/books')
 
@@ -34,6 +34,7 @@ def index():
 
     return render_template('book/index.html', books=books, target_category=target_category)
 
+
 @bp.route("/search")
 def search():
     db = get_db()
@@ -44,10 +45,12 @@ def search():
 
     return render_template("book/partials/books-table.html", books=books)
 
+
 @bp.route("/<title>/view", methods=("GET", "POST"))
 def view(title):
     book = get_book(title.replace("-", " "))
     return render_template("book/view.html", book=book)
+
 
 @bp.route("/sort/<sortingType>")
 def sort(sortingType):
@@ -64,6 +67,7 @@ def sort(sortingType):
 
     return jsonify(response)
 
+# Utility functions
 def get_book(title):
     book = get_db().execute("SELECT * FROM book WHERE lower(title) = ?", (title,)).fetchone()
 
@@ -71,6 +75,7 @@ def get_book(title):
         abort(404, f"Book with title {title} cannot be found.")
     
     return book
+
 
 def get_target_category(course):
     course_mapping = {
@@ -80,6 +85,7 @@ def get_target_category(course):
     }
 
     return course_mapping[course]
+
 
 def get_sorted_book(sortingName):
     db = get_db()
@@ -91,4 +97,4 @@ def get_sorted_book(sortingName):
     elif sortingName == "insertion":
         return insertion_sort(books, "title")
     elif sortingName == "treesort":
-        return tree_sort_books(books, "title")
+        return tree_sort(books, "title")
