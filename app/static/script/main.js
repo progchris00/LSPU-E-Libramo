@@ -27,13 +27,15 @@ sortButton?.addEventListener("click", () => {
 const sortContainer = document.querySelector(".sort-container");
 const sortChoices = sortContainer.querySelectorAll("li");
 const booksContainer = document.getElementById("books-container");
+const skeletonContainer = document.getElementById("skeleton-container");
 sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
+    booksContainer.innerHTML = "";
+    skeletonContainer.classList.toggle("hidden");
     sortDropdown.classList.toggle("hidden");
+
     let response = await fetch(`/books/sort/${choice.id}`);
     let book_data = await response.json();
-
-    booksContainer.innerHTML = "";
 
     let row_data = "";
 
@@ -64,6 +66,7 @@ sortChoices.forEach((choice) => {
       `;
     });
 
+    skeletonContainer.classList.toggle("hidden");
     booksContainer.innerHTML = row_data;
   });
 });
