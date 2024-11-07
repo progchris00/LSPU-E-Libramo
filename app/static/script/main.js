@@ -29,6 +29,7 @@ const sortChoices = sortContainer.querySelectorAll("li");
 const booksContainer = document.getElementById("books-container");
 sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
+    sortDropdown.classList.toggle("hidden");
     let response = await fetch(`/books/sort/${choice.id}`);
     let book_data = await response.json();
 
