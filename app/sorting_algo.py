@@ -89,7 +89,7 @@ class TreeSort:
             books.append(node.book)
             self._inorder(node.right, books)
 
-def tree_sort_books(data, key):
+def tree_sort(data, key):
     tree = TreeSort(key)
     
     for book in data:
