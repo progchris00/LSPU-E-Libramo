@@ -122,10 +122,10 @@
                     >
                   </li>
                   <li class="p-2 hover:bg-gray-100">
-                    <a href="">Insertion sort</a>
+                    <a href="{{ url_for('book.sort', sortingType='insertion')}}">Insertion sort</a>
                   </li>
                   <li class="p-2 hover:bg-gray-100">
-                    <a href="">Tree sort</a>
+                    <a href="{{ url_for('book.sort', sortingType='treesort')}}">Tree sort</a>
                   </li>
                 </ul>
               </div>

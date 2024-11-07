@@ -20,3 +20,4 @@ CREATE TABLE book (
   rating REAL,
   FOREIGN KEY (borrower_id) REFERENCES user (id)
 );
+
