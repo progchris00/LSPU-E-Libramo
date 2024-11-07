@@ -54,7 +54,15 @@ def sort(sortingType):
     start_time = time.time()
     books = get_sorted_book(sortingType)
     time_execution = time.time() - start_time
-    return render_template("book/index.html", books=books, time_execution=time_execution)
+
+    books = [dict(book) for book in books]
+
+    response = {
+        "books": books,
+        "time_execution": time_execution
+    }
+
+    return jsonify(response)
 
 def get_book(title):
     book = get_db().execute("SELECT * FROM book WHERE lower(title) = ?", (title,)).fetchone()

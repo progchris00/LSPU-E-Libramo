@@ -115,17 +115,24 @@
               id="sort-dropdown"
             >
               <div>
-                <ul>
-                  <li class="p-2 hover:bg-gray-100">
-                    <a href="{{ url_for('book.sort', sortingType='cocktail') }}"
-                      >Cocktail sort</a
-                    >
+                <ul class="sort-container">
+                  <li
+                    class="p-2 hover:bg-gray-100 cursor-pointer"
+                    id="cocktail"
+                  >
+                    Cocktail sort
                   </li>
-                  <li class="p-2 hover:bg-gray-100">
-                    <a href="{{ url_for('book.sort', sortingType='insertion')}}">Insertion sort</a>
+                  <li
+                    class="p-2 hover:bg-gray-100 cursor-pointer"
+                    id="insertion"
+                  >
+                    Insertion sort
                   </li>
-                  <li class="p-2 hover:bg-gray-100">
-                    <a href="{{ url_for('book.sort', sortingType='treesort')}}">Tree sort</a>
+                  <li
+                    class="p-2 hover:bg-gray-100 cursor-pointer"
+                    id="treesort"
+                  >
+                    Tree sort
                   </li>
                 </ul>
               </div>
