@@ -28,6 +28,7 @@ const sortContainer = document.querySelector(".sort-container");
 const sortChoices = sortContainer.querySelectorAll("li");
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
+
 sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
     booksContainer.innerHTML = "";
@@ -54,7 +55,9 @@ sortChoices.forEach((choice) => {
       <tr>
         <td class="px-3 py-1.5">${book["id"]} </td>
         <td class="px-3 py-1.5">${book["category"]} </td>
-        <td class="px-3 py-1.5">${book["title"]} </td>
+        <td class="px-3 py-1.5"><a href="books/${book["title"]
+          .replace(" ", "-")
+          .toLowerCase()}/view">${book["title"]}</a></td>
         <td class="px-3 py-1.5">${book["author"]} </td>
         <td class="px-3 py-1.5">${book["pages"]} </td>
         <td class="px-3 py-1.5"> 
