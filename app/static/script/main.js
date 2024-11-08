@@ -32,11 +32,14 @@ const skeletonContainer = document.getElementById("skeleton-container");
 // Alert
 const toast = document.getElementById("toast-default");
 const closeButton = document.getElementById("close-toast");
+const toastViewDetails = document.getElementById("view-details-button");
 
 // Modal
 const executionContainer = document.getElementById("time-execution-container");
 const sortingNameContainer = document.getElementById("sorting-name-container");
 const speedContainer = document.getElementById("speed-container");
+const modal = document.getElementById("default-modal");
+const modalCloseButton = document.getElementById("close-modal");
 
 sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
@@ -103,20 +106,20 @@ sortChoices.forEach((choice) => {
     }, 500);
   });
 
-  // Get elements
-  const viewDetailsButton = document.getElementById("view-details-button");
-  const modal = document.getElementById("default-modal");
-  const closeModal = document.getElementById("close-modal");
-  // const viewDetailsButton = document.getElementById("view-details");
+  // Toast logic
+  toastViewDetails.addEventListener("click", () => {
+    toast.classList.remove("animate-slide-in-right");
+    toast.classList.add("animate-slide-out-right");
+    toast.classList.toggle("hidden");
+    toast.classList.toggle("flex");
 
-  // Show the modal when the "View" link in the toast is clicked
-  viewDetailsButton.addEventListener("click", () => {
     modal.classList.toggle("flex");
     modal.classList.toggle("hidden");
   });
 
-  // Close the modal when the close button is clicked
-  closeModal.addEventListener("click", function () {
-    modal.classList.add("hidden"); // Hide modal
+  // Modal Logic
+  modalCloseButton.addEventListener("click", function () {
+    modal.classList.toggle("hidden");
+    modal.classList.toggle("flex");
   });
 });
