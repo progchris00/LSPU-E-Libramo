@@ -29,6 +29,15 @@ const sortChoices = sortContainer.querySelectorAll("li");
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
 
+// Alert
+const toast = document.getElementById("toast-default");
+const closeButton = document.getElementById("close-toast");
+
+// Modal
+const executionContainer = document.getElementById("time-execution-container");
+const sortingNameContainer = document.getElementById("sorting-name-container");
+const speedContainer = document.getElementById("speed-container");
+
 sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
     booksContainer.innerHTML = "";
@@ -67,44 +76,43 @@ sortChoices.forEach((choice) => {
         </td>
       </tr>
       `;
-    });
 
+      sortingNameContainer.textContent = choice.innerText;
+    });
     skeletonContainer.classList.toggle("hidden");
     booksContainer.innerHTML = row_data;
-  });
+    executionContainer.textContent = book_data.time_execution.toFixed(2);
 
-  // Modals
-  const toast = document.getElementById("toast-default");
-  const closeButton = document.getElementById("close-toast");
-  const slideButton = document.getElementById("slideButton");
+    if (book_data.time_execution < 1) {
+      speedContainer.textContent = "Fast";
+    } else if (book_data.time_execution > 2) {
+      speedContainer.textContent = "Slow";
+    }
 
-  // Function to show the toast with slide-in effect
-  slideButton.addEventListener("click", function () {
-    toast.classList.remove("animate-slide-out-right");
-    toast.classList.remove("hidden");
+    toast.classList.toggle("flex");
+    toast.classList.toggle("hidden");
     toast.classList.add("animate-slide-in-right");
   });
 
-  // Function to remove the toast with slide-out effect
   closeButton.addEventListener("click", function () {
     toast.classList.remove("animate-slide-in-right");
     toast.classList.add("animate-slide-out-right");
 
-    // Wait for the slide-out animation to complete before removing the element
     setTimeout(function () {
       toast.classList.add("hidden");
-    }, 500); // Match the animation duration (0.5s)
+    }, 500);
   });
 
   // Get elements
-  const viewToastLink = document.getElementById("view-toast-link");
+  const viewDetailsButton = document.getElementById("view-details-button");
   const modal = document.getElementById("default-modal");
   const closeModal = document.getElementById("close-modal");
+  // const viewDetailsButton = document.getElementById("view-details");
 
   // Show the modal when the "View" link in the toast is clicked
-  viewToastLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    modal.classList.remove("hidden"); // Show modal
+  viewDetailsButton.addEventListener("click", () => {
+    modal.classList.toggle("flex");
+    modal.classList.toggle("hidden");
   });
 
   // Close the modal when the close button is clicked
