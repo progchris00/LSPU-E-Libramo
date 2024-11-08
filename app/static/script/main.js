@@ -73,49 +73,48 @@ sortChoices.forEach((choice) => {
     booksContainer.innerHTML = row_data;
   });
 
-// Modals
-const toast = document.getElementById('toast-default');
-const closeButton = document.getElementById('close-toast');
-const slideButton = document.getElementById('slideButton');
+  // Modals
+  const toast = document.getElementById("toast-default");
+  const closeButton = document.getElementById("close-toast");
+  const slideButton = document.getElementById("slideButton");
 
-// Function to show the toast with slide-in effect
-slideButton.addEventListener('click', function () {
-toast.classList.remove('animate-slide-out-right');
-toast.classList.remove('hidden');
-toast.classList.add('animate-slide-in-right');
-});
+  // Function to show the toast with slide-in effect
+  slideButton.addEventListener("click", function () {
+    toast.classList.remove("animate-slide-out-right");
+    toast.classList.remove("hidden");
+    toast.classList.add("animate-slide-in-right");
+  });
 
-// Function to remove the toast with slide-out effect
-closeButton.addEventListener('click', function () {
-toast.classList.remove('animate-slide-in-right');
-toast.classList.add('animate-slide-out-right');
+  // Function to remove the toast with slide-out effect
+  closeButton.addEventListener("click", function () {
+    toast.classList.remove("animate-slide-in-right");
+    toast.classList.add("animate-slide-out-right");
 
-// Wait for the slide-out animation to complete before removing the element
-setTimeout(function () {
-toast.classList.add('hidden');
-}, 500); // Match the animation duration (0.5s)
-});
+    // Wait for the slide-out animation to complete before removing the element
+    setTimeout(function () {
+      toast.classList.add("hidden");
+    }, 500); // Match the animation duration (0.5s)
+  });
 
- // Get elements
-const viewToastLink = document.getElementById('view-toast-link');
-const modal = document.getElementById('default-modal');
-const closeModal = document.getElementById('close-modal');
-const viewDetailsButton = document.getElementById('view-details');
- 
-// Show the modal when the "View" link in the toast is clicked
-viewToastLink.addEventListener('click', function(e) {
-   e.preventDefault();
-   modal.classList.remove('hidden');  // Show modal
- });
+  // Get elements
+  const viewToastLink = document.getElementById("view-toast-link");
+  const modal = document.getElementById("default-modal");
+  const closeModal = document.getElementById("close-modal");
+  const viewDetailsButton = document.getElementById("view-details");
 
- // Close the modal when the close button is clicked
- closeModal.addEventListener('click', function() {
-   modal.classList.add('hidden');  // Hide modal
- });
+  // Show the modal when the "View" link in the toast is clicked
+  viewToastLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    modal.classList.remove("hidden"); // Show modal
+  });
 
- // Hide the modal when the "View Details" button is clicked
- viewDetailsButton.addEventListener('click', function() {
-   modal.classList.add('hidden');  // Hide modal
- });
+  // Close the modal when the close button is clicked
+  closeModal.addEventListener("click", function () {
+    modal.classList.add("hidden"); // Hide modal
+  });
 
+  // Hide the modal when the "View Details" button is clicked
+  viewDetailsButton.addEventListener("click", function () {
+    modal.classList.add("hidden"); // Hide modal
+  });
 });
