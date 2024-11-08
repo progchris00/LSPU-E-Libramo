@@ -100,7 +100,6 @@ sortChoices.forEach((choice) => {
   const viewToastLink = document.getElementById("view-toast-link");
   const modal = document.getElementById("default-modal");
   const closeModal = document.getElementById("close-modal");
-  const viewDetailsButton = document.getElementById("view-details");
 
   // Show the modal when the "View" link in the toast is clicked
   viewToastLink.addEventListener("click", function (e) {
@@ -110,11 +109,6 @@ sortChoices.forEach((choice) => {
 
   // Close the modal when the close button is clicked
   closeModal.addEventListener("click", function () {
-    modal.classList.add("hidden"); // Hide modal
-  });
-
-  // Hide the modal when the "View Details" button is clicked
-  viewDetailsButton.addEventListener("click", function () {
     modal.classList.add("hidden"); // Hide modal
   });
 });
