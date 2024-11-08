@@ -18,6 +18,7 @@ CREATE TABLE book (
   borrower_id INTEGER,
   cover TEXT,
   rating REAL,
+  book_description TEXT,
   FOREIGN KEY (borrower_id) REFERENCES user (id)
 );
 
