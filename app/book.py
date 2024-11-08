@@ -16,7 +16,7 @@ def index():
 
     if g.user is None:
         books = db.execute(
-            'SELECT * FROM book'
+            'SELECT * FROM book LIMIT 10'
         ).fetchall()
         target_category = None
     else:
