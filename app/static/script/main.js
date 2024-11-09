@@ -86,32 +86,32 @@ sortChoices.forEach((choice) => {
     displaySortingDetailsModal(book_data.time_execution, choice.innerText);
     displayToastNotif();
   });
+});
 
-  closeButton.addEventListener("click", function () {
-    toast.classList.remove("animate-slide-in-right");
-    toast.classList.add("animate-slide-out-right");
+closeButton.addEventListener("click", function () {
+  toast.classList.remove("animate-slide-in-right");
+  toast.classList.add("animate-slide-out-right");
 
-    setTimeout(function () {
-      toast.classList.add("hidden");
-    }, 500);
-  });
+  setTimeout(function () {
+    toast.classList.add("hidden");
+  }, 500);
+});
 
-  // Toast logic
-  toastViewDetails.addEventListener("click", () => {
-    toast.classList.remove("animate-slide-in-right");
-    toast.classList.add("animate-slide-out-right");
-    toast.classList.toggle("hidden");
-    toast.classList.toggle("flex");
+// Toast logic
+toastViewDetails.addEventListener("click", () => {
+  toast.classList.remove("animate-slide-in-right");
+  toast.classList.add("animate-slide-out-right");
+  toast.classList.toggle("hidden");
+  toast.classList.toggle("flex");
 
-    modal.classList.toggle("flex");
-    modal.classList.toggle("hidden");
-  });
+  modal.classList.toggle("flex");
+  modal.classList.toggle("hidden");
+});
 
-  // Modal Logic
-  modalCloseButton.addEventListener("click", function () {
-    modal.classList.toggle("hidden");
-    modal.classList.toggle("flex");
-  });
+// Modal Logic
+modalCloseButton.addEventListener("click", function () {
+  modal.classList.toggle("hidden");
+  modal.classList.toggle("flex");
 });
 
 function displayToastNotif() {
