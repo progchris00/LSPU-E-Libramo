@@ -41,7 +41,6 @@ const speedContainer = document.getElementById("speed-container");
 const modal = document.getElementById("default-modal");
 const modalCloseButton = document.getElementById("close-modal");
 
-
 sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
     booksContainer.innerHTML = "";
@@ -80,22 +79,12 @@ sortChoices.forEach((choice) => {
         </td>
       </tr>
       `;
-
-      sortingNameContainer.textContent = choice.innerText;
     });
     skeletonContainer.classList.toggle("hidden");
     booksContainer.innerHTML = row_data;
-    executionContainer.textContent = book_data.time_execution.toFixed(2);
 
-    if (book_data.time_execution < 1) {
-      speedContainer.textContent = "Fast";
-    } else if (book_data.time_execution > 2) {
-      speedContainer.textContent = "Slow";
-    }
-
-    toast.classList.toggle("flex");
-    toast.classList.toggle("hidden");
-    toast.classList.add("animate-slide-in-right");
+    displaySortingDetailsModal(book_data.time_execution, choice.innerText);
+    displayToastNotif();
   });
 
   closeButton.addEventListener("click", function () {
@@ -124,3 +113,24 @@ sortChoices.forEach((choice) => {
     modal.classList.toggle("flex");
   });
 });
+
+function displayToastNotif() {
+  toast.classList.add("animate-slide-in-right");
+  toast.classList.remove("hidden");
+  toast.classList.add("flex");
+}
+
+function displaySortingDetailsModal(timeExecution, sortingName) {
+  sortingNameContainer.textContent = sortingName;
+  const sortTimeExecution = timeExecution;
+
+  executionContainer.textContent = sortTimeExecution.toFixed(2);
+
+  if (sortTimeExecution < 1) {
+    speedContainer.textContent = "Fast";
+    speedContainer.className += " border-green-600 text-green-600 bg-green-200";
+  } else if (sortTimeExecution > 2) {
+    speedContainer.textContent = "Slow";
+    speedContainer.className += " border-red-600 text-red-600 bg-red-200";
+  }
+}
