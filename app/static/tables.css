@@ -1,0 +1,23 @@
+@media (max-width: 650px) {
+  th {
+    display: none;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  td::before {
+    content: attr(data-cell) ": ";
+    font-weight: 600;
+  }
+
+  td:first-child {
+    padding-top: 1rem;
+  }
+  td:last-child {
+    padding-bottom: 1rem;
+  }
+}
