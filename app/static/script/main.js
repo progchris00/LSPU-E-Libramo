@@ -115,6 +115,7 @@ modalCloseButton.addEventListener("click", function () {
 });
 
 function displayToastNotif() {
+  toast.classList.remove("animate-slide-out-right");
   toast.classList.add("animate-slide-in-right");
   toast.classList.remove("hidden");
   toast.classList.add("flex");
