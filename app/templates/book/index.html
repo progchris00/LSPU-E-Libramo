@@ -2,11 +2,11 @@
 <body class="font-inter bg-site-light text-sm text-primary-light">
   <header class="w-full flex justify-center p-4">
     <div class="max-w-6xl w-full flex justify-between relative">
-      <img
-        src="{{ url_for('static', filename='images/header-logo.png')}}"
-        alt="Logo for Header"
-        class="w-32"
-      />
+        <img
+          src="{{ url_for('static', filename='images/header-logo.png') }}"
+          alt="Logo for Header"
+          class="w-32"
+        />
       <nav class="flex items-center gap-4">
         {% if g.user %}
         <p>Hello, {{ g.user['username'].capitalize() }}</p>
