@@ -89,24 +89,24 @@
       <h1 class="text-center text-2xl mb-2 font-bold text-gray-800">
         List of Books
       </h1>
-      <div class="max-w-7xl mx-auto">
-        <div class="flex items-center py-3 justify-between">
+      <div class="max-w-full mx-auto">
+        <div class="flex items-center py-3 justify-between space-x-2">
           <input
             type="text"
             id="search-box"
             name="q"
             placeholder="Search for books..."
-            class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full max-w-xs"
+            class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-full md:w-80"
           />
           <div class="relative">
             <button
-              class="flex justify-center items-center px-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+              class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2"
               id="sort-button"
             >
-              <span>Sort title by</span>
+              <span class ="whitespace-nowrap md:text-sm ml-1">Sort title by</span>
               <img
                 src="{{ url_for('static', filename='images/dropdown.png')}}"
-                class="w-7"
+                class="w-7 w-4 sm:mt-0 sm:ml-6 md:w-4 h-6"
               />
             </button>
             <div
@@ -139,20 +139,22 @@
           </div>
         </div>
       </div>
-      <table class="w-full rounded-2xl overflow-hidden text-sm shadow-custom">
-        <thead class="bg-thead-light text-heading-light">
-          <tr class="text-left">
-            <th class="p-3 rounded-l-xl font-semibold" scope="col">Book ID</th>
-            <th class="p-3 font-semibold" scope="col">Category</th>
-            <th class="p-3 font-semibold" scope="col">Book Title</th>
-            <th class="p-3 font-semibold" scope="col">Author</th>
-            <th class="p-3 font-semibold" scope="col">Pages</th>
-            <th class="p-3 font-semibold rounded-r-xl" scope="col">Status</th>
-          </tr>
-        </thead>
+      <div class="overflow-x-auto shadow-custom rounded-2xl">
+        <table class="w-full text-sm  ">
+          <thead class="bg-thead-light text-heading-light">
+            <tr class="text-left">
+              <th class="p-3 font-semibold" scope="col">Book ID</th>
+              <th class="p-3 font-semibold" scope="col">Category</th>
+              <th class="p-3 font-semibold" scope="col">Book Title</th>
+              <th class="p-3 font-semibold" scope="col">Author</th>
+              <th class="p-3 font-semibold" scope="col">Pages</th>
+              <th class="p-3 font-semibold " scope="col">Status</th>
+            </tr>
+          </thead>
         <tbody class="text-left text-md" id="books-container">
           {% include 'book/partials/books-table.html' %}
         </tbody>
+      </div>
         <tbody class="text-left text-md hidden" id="skeleton-container">
           <tr class="space-y-2.5 animate-pulse">
             <td class="px-3 py-1.5">
@@ -349,6 +351,7 @@
         </tbody>
       </table>
     </div>
+  
   </div>
   <!--Sliding Modal From Right-->
   <div
@@ -494,8 +497,9 @@
                 stroke-linecap="round" 
                 stroke-linejoin="round" 
                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" 
-              />
+                />
             </svg>
+            
             </span>
             <h3
               class="flex items-start mb-1 text-lg font-semibold text-gray-900"
