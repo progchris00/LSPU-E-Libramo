@@ -1,8 +1,8 @@
 {% if books %} {% for book in books %}
-<tr class="text-md">
-  <td class="px-3 py-1.5">{{ book['id'] }}</td>
-  <td class="px-3 py-1.5">{{ book['category'] }}</td>
-  <td class="px-3 py-1.5">
+<tr class="text-md even:bg-gray-100">
+  <td class="px-3 py-1.5" data-cell="Book ID">{{ book['id'] }}</td>
+  <td class="px-3 py-1.5" data-cell="Category">{{ book['category'] }}</td>
+  <td class="px-3 py-1.5" data-cell="Book Title">
     <a
       href="{{ url_for('book.view', title=book['title'].replace(' ','-').lower()) }}"
       >{{ book['title'] }} {% if book["category"] == target_category %}
@@ -12,9 +12,9 @@
       >{% endif %}
     </a>
   </td>
-  <td class="px-3 py-1.5">{{ book['author'] }}</td>
-  <td class="px-3 py-1.5">{{ book['pages'] }}</td>
-  <td class="px-3 py-1.5">
+  <td class="px-3 py-1.5" data-cell="Author">{{ book['author'] }}</td>
+  <td class="px-3 py-1.5" data-cell="Pages">{{ book['pages'] }}</td>
+  <td class="px-3 py-1.5" data-cell="Status">
     {% if book['is_borrowed'] == 1%}
     <button
       class="rounded-md min-w-20 p-1 border border-red-600 text-red-600 bg-red-200"
