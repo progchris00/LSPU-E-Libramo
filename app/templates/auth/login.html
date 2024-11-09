@@ -1,14 +1,21 @@
-{% extends 'base.html' %} {% block title %} Register {% endblock %} {% block
-body %}
+{% extends 'base.html' %}
+{% block title %} Register {% endblock %}
+{% block body %}
 <body
-  class="bg-[url('../static/images/background.png')] bg-cover flex justify-center min-h-screen items-center"
+  class="bg-[url('../static/images/background.png')] bg-cover flex justify-center h-full sm:h-screen items-center"
   style="font-family: 'Lexend', sans-serif"
 >
   <div
-    class="w-full max-w-2xl flex md:flex-row-reverse border-2 rounded-2xl overflow-hidden shadow-xl bg-white"
+    class="w-full max-w-2xl flex flex-col md:flex-row border-2 rounded-2xl overflow-hidden shadow-xl bg-white m-5"
   >
-    <div class="flex-1 flex flex-col p-6 text-sm gap-6">
-      <div class="flex justify-center items-center">
+    <div class="flex w-full md:w-1/2">
+      <img
+        src="{{ url_for('static', filename='images/slideshow-1.png')}}"
+        class="w-full h-56 md:h-auto object-cover "
+      />
+    </div>
+    <div class="flex-1 flex flex-col p-6 sm:px-4 sm:py-4 text-sm gap-4 md:gap-8">
+      <div class="flex justify-center items-center ">
         <img
           src="{{ url_for('static', filename='images/elib.svg')}}"
           class="w-16"
@@ -20,21 +27,17 @@ body %}
       </div>
       <form class="flex flex-col gap-6" method="POST">
         <div class="relative">
-          <label class="absolute -top-2 left-2 bg-white text-xs" for=""
-            >Username</label
-          >
+          <label class="absolute -top-2 left-2 bg-white text-xs" for="username">Username</label>
           <input
             class="border border-slate-800 rounded-lg p-2 w-full"
-            type="username"
+            type="text"
             placeholder="Username"
             required
             name="username"
           />
         </div>
         <div class="relative">
-          <label class="absolute -top-2 left-2 bg-white text-xs" for=""
-            >Password</label
-          >
+          <label class="absolute -top-2 left-2 bg-white text-xs" for="password">Password</label>
           <input
             class="border border-slate-800 rounded-lg p-2 w-full"
             type="password"
@@ -75,12 +78,6 @@ body %}
           >
         </div>
       </div>
-    </div>
-    <div class="flex-1 md:shadow-xl w-full md:w-1/2">
-      <img
-        src="{{ url_for('static', filename='images/slideshow-1.png')}}"
-        class="w-full h-auto"
-      />
     </div>
   </div>
 </body>
