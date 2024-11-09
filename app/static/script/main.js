@@ -41,6 +41,7 @@ const speedContainer = document.getElementById("speed-container");
 const modal = document.getElementById("default-modal");
 const modalCloseButton = document.getElementById("close-modal");
 
+
 sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
     booksContainer.innerHTML = "";
