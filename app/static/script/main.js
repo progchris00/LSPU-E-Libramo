@@ -128,9 +128,19 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
 
   if (sortTimeExecution < 1) {
     speedContainer.textContent = "Fast";
+    speedContainer.classList.remove(
+      "border-red-600",
+      "text-red-600",
+      "bg-red-200"
+    );
     speedContainer.className += " border-green-600 text-green-600 bg-green-200";
   } else if (sortTimeExecution > 2) {
     speedContainer.textContent = "Slow";
+    speedContainer.classList.remove(
+      "border-green-600",
+      "text-green-600",
+      "bg-green-200"
+    );
     speedContainer.className += " border-red-600 text-red-600 bg-red-200";
   }
 }
