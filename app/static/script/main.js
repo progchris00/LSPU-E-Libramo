@@ -19,20 +19,20 @@ searchBox.addEventListener("input", async function () {
 });
 
 // Count Dropdown
-const sortDropdown = document.getElementById("sort-dropdown");
-const sortButton = document.getElementById("sort-button");
-sortButton?.addEventListener("click", () => {
-  sortDropdown.classList.toggle("hidden");
+const countDropdown = document.getElementById("count-dropdown");
+const countButton = document.getElementById("count-button");
+countButton?.addEventListener("click", () => {
+  countDropdown.classList.toggle("hidden");
 });
 const countTextContainer = document.getElementById("count-text-container");
 
-const sortContainer = document.querySelector(".sort-container");
-const sortChoices = sortContainer.querySelectorAll("li");
+const countContainer = document.querySelector(".count-container");
+const countChoices = countContainer.querySelectorAll("li");
 
-sortChoices.forEach((choice) => {
+countChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
     countTextContainer.textContent = choice.id;
-    sortDropdown.classList.toggle("hidden");
+    countDropdown.classList.toggle("hidden");
   });
 });
 
