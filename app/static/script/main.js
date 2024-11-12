@@ -18,27 +18,44 @@ searchBox.addEventListener("input", async function () {
   booksContainer.innerHTML += html;
 });
 
+// Count Dropdown
 const sortDropdown = document.getElementById("sort-dropdown");
 const sortButton = document.getElementById("sort-button");
 sortButton?.addEventListener("click", () => {
   sortDropdown.classList.toggle("hidden");
 });
+const countTextContainer = document.getElementById("count-text-container");
 
 const sortContainer = document.querySelector(".sort-container");
 const sortChoices = sortContainer.querySelectorAll("li");
-const booksContainer = document.getElementById("books-container");
-const skeletonContainer = document.getElementById("skeleton-container");
 
-// Case Dropdown
-const caseContainer = document.querySelector(".case-container");
-const caseChoices = caseContainer.querySelectorAll("li");
+sortChoices.forEach((choice) => {
+  choice.addEventListener("click", async function () {
+    countTextContainer.textContent = choice.id;
+    sortDropdown.classList.toggle("hidden");
+  })
+})
 
+// Format Dropdown
 const caseDropdown = document.getElementById("case-dropdown");
 const caseButton = document.getElementById("case-button");
 caseButton?.addEventListener("click", () => {
   caseDropdown.classList.toggle("hidden");
 });
+const formatTextContainer = document.getElementById("format-text-container");
 
+const caseContainer = document.querySelector(".case-container");
+const caseChoices = caseContainer.querySelectorAll("li");
+
+caseChoices.forEach((choice) => {
+  choice.addEventListener("click", async function () {
+    formatTextContainer.textContent = choice.id;
+    caseDropdown.classList.toggle("hidden");
+  })
+})
+
+const booksContainer = document.getElementById("books-container");
+const skeletonContainer = document.getElementById("skeleton-container");
 
 
 // Alert
@@ -53,52 +70,52 @@ const speedContainer = document.getElementById("speed-container");
 const modal = document.getElementById("default-modal");
 const modalCloseButton = document.getElementById("close-modal");
 
-sortChoices.forEach((choice) => {
-  choice.addEventListener("click", async function () {
-    booksContainer.innerHTML = "";
-    skeletonContainer.classList.toggle("hidden");
-    sortDropdown.classList.toggle("hidden");
+// sortChoices.forEach((choice) => {
+//   choice.addEventListener("click", async function () {
+//     booksContainer.innerHTML = "";
+//     skeletonContainer.classList.toggle("hidden");
+//     sortDropdown.classList.toggle("hidden");
 
-    let response = await fetch(`/books/sort/${choice.id}`);
-    let book_data = await response.json();
+//     let response = await fetch(`/books/sort/${choice.id}`);
+//     let book_data = await response.json();
 
-    let row_data = "";
+//     let row_data = "";
 
-    let borrowerColor;
-    let borrowerStatus;
+//     let borrowerColor;
+//     let borrowerStatus;
 
-    book_data.books.forEach((book) => {
-      if (book["is_borrowed"] == 1) {
-        borrowerColor = "border-red-600 text-red-600 bg-red-200";
-        borrowerStatus = "Borrowed";
-      } else {
-        borrowerColor = "border-green-600 text-green-600 bg-green-200";
-        borrowerStatus = "Available";
-      }
-      row_data += `
-      <tr>
-        <td class="px-3 py-1.5">${book["id"]} </td>
-        <td class="px-3 py-1.5">${book["category"]} </td>
-        <td class="px-3 py-1.5"><a href="books/${book["title"]
-          .replace(" ", "-")
-          .toLowerCase()}/view">${book["title"]}</a></td>
-        <td class="px-3 py-1.5">${book["author"]} </td>
-        <td class="px-3 py-1.5">${book["pages"]} </td>
-        <td class="px-3 py-1.5"> 
-          <button class="rounded-md min-w-20 p-1 border ${borrowerColor}">
-            ${borrowerStatus}
-          </button>
-        </td>
-      </tr>
-      `;
-    });
-    skeletonContainer.classList.toggle("hidden");
-    booksContainer.innerHTML = row_data;
+//     book_data.books.forEach((book) => {
+//       if (book["is_borrowed"] == 1) {
+//         borrowerColor = "border-red-600 text-red-600 bg-red-200";
+//         borrowerStatus = "Borrowed";
+//       } else {
+//         borrowerColor = "border-green-600 text-green-600 bg-green-200";
+//         borrowerStatus = "Available";
+//       }
+//       row_data += `
+//       <tr>
+//         <td class="px-3 py-1.5">${book["id"]} </td>
+//         <td class="px-3 py-1.5">${book["category"]} </td>
+//         <td class="px-3 py-1.5"><a href="books/${book["title"]
+//           .replace(" ", "-")
+//           .toLowerCase()}/view">${book["title"]}</a></td>
+//         <td class="px-3 py-1.5">${book["author"]} </td>
+//         <td class="px-3 py-1.5">${book["pages"]} </td>
+//         <td class="px-3 py-1.5"> 
+//           <button class="rounded-md min-w-20 p-1 border ${borrowerColor}">
+//             ${borrowerStatus}
+//           </button>
+//         </td>
+//       </tr>
+//       `;
+//     });
+//     skeletonContainer.classList.toggle("hidden");
+//     booksContainer.innerHTML = row_data;
 
-    displaySortingDetailsModal(book_data.time_execution, choice.innerText);
-    displayToastNotif();
-  });
-});
+//     displaySortingDetailsModal(book_data.time_execution, choice.innerText);
+//     displayToastNotif();
+//   });
+// });
 
 closeButton.addEventListener("click", function () {
   toast.classList.remove("animate-slide-in-right");
