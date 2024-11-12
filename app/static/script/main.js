@@ -29,6 +29,18 @@ const sortChoices = sortContainer.querySelectorAll("li");
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
 
+// Case Dropdown
+const caseContainer = document.querySelector(".case-container");
+const caseChoices = caseContainer.querySelectorAll("li");
+
+const caseDropdown = document.getElementById("case-dropdown");
+const caseButton = document.getElementById("case-button");
+caseButton?.addEventListener("click", () => {
+  caseDropdown.classList.toggle("hidden");
+});
+
+
+
 // Alert
 const toast = document.getElementById("toast-default");
 const closeButton = document.getElementById("close-toast");
