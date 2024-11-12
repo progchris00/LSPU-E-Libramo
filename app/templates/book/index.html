@@ -2,11 +2,11 @@
 <body class="font-inter bg-site-light text-sm text-primary-light">
   <header class="w-full flex justify-center p-4">
     <div class="max-w-6xl w-full flex justify-between relative">
-        <img
-          src="{{ url_for('static', filename='images/header-logo.png') }}"
-          alt="Logo for Header"
-          class="w-32"
-        />
+      <img
+        src="{{ url_for('static', filename='images/header-logo.png') }}"
+        alt="Logo for Header"
+        class="w-32"
+      />
       <nav class="flex items-center gap-4">
         {% if g.user %}
         <p>Hello, {{ g.user['username'].capitalize() }}</p>
@@ -102,99 +102,116 @@
             <div class="relative">
               <!--Add button-->
               <button
-              class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2 "
-              id=""
-            >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            
-            </button>
+                class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2"
+                id=""
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#ffffff"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </button>
             </div>
             <div class="relative">
               <button
-              class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2 "
-              id="sort-button"
-            >
-              <span class ="whitespace-nowrap md:text-sm ml-1" id="count-text-container">Data count</span>
-              <img
-                src="{{ url_for('static', filename='images/dropdown.png')}}"
-                class="w-7 w-4 sm:mt-0 sm:ml-6 md:w-4 h-6"
-              />
-            </button>
-            <div
-              class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
-              id="sort-dropdown"
-            >
-              <div>
-                <ul class="sort-container">
-                  <li
-                    class="p-2 hover:bg-gray-100 cursor-pointer"
-                    id="1,000"
-                  >
-                    1,000
-                  </li>
-                  <li
-                    class="p-2 hover:bg-gray-100 cursor-pointer"
-                    id="5,000"
-                  >
-                    5,000
-                  </li>
-                  <li
-                    class="p-2 hover:bg-gray-100 cursor-pointer"
-                    id="10,000"
-                  >
-                    10,000
-                  </li>
-                </ul>
+                class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2"
+                id="sort-button"
+              >
+                <span
+                  class="whitespace-nowrap md:text-sm ml-1"
+                  id="count-text-container"
+                  >Data count</span
+                >
+                <img
+                  src="{{ url_for('static', filename='images/dropdown.png')}}"
+                  class="w-7 sm:mt-0 sm:ml-6 md:w-4 h-6"
+                />
+              </button>
+              <div
+                class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
+                id="sort-dropdown"
+              >
+                <div>
+                  <ul class="sort-container">
+                    <li class="p-2 hover:bg-gray-100 cursor-pointer" id="1,000">
+                      1,000
+                    </li>
+                    <li class="p-2 hover:bg-gray-100 cursor-pointer" id="5,000">
+                      5,000
+                    </li>
+                    <li
+                      class="p-2 hover:bg-gray-100 cursor-pointer"
+                      id="10,000"
+                    >
+                      10,000
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="relative">
-            <button
-            class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2"
-            id="case-button"
-          >
-            <span class ="whitespace-nowrap md:text-sm ml-1" id="format-text-container">Data format</span>
-            <img
-              src="{{ url_for('static', filename='images/dropdown.png')}}"
-              class="w-7 w-4 sm:mt-0 sm:ml-1 md:w-4 h-6"
-            />
-          </button>
-          <div
-            class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
-            id="case-dropdown"
-          >
-            <div>
-              <ul class="case-container">
-                <li
-                  class="p-2 hover:bg-gray-100 cursor-pointer"
-                  id="Sorted"
+            <div class="relative">
+              <button
+                class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2"
+                id="case-button"
+              >
+                <span
+                  class="whitespace-nowrap md:text-sm ml-1"
+                  id="format-text-container"
+                  >Data format</span
                 >
-                  Sorted
-                </li>
-                <li
-                  class="p-2 hover:bg-gray-100 cursor-pointer"
-                  id="Random"
-                >
-                  Random
-                </li>
-                <li
-                  class="p-2 hover:bg-gray-100 cursor-pointer"
-                  id="Reverse"
-                >
-                  Reverse
-                </li>
-              </ul>
+                <img
+                  src="{{ url_for('static', filename='images/dropdown.png')}}"
+                  class="w-7 sm:mt-0 sm:ml-1 md:w-4 h-6"
+                />
+              </button>
+              <div
+                class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
+                id="case-dropdown"
+              >
+                <div>
+                  <ul class="case-container">
+                    <li
+                      class="p-2 hover:bg-gray-100 cursor-pointer"
+                      id="Sorted"
+                    >
+                      Sorted
+                    </li>
+                    <li
+                      class="p-2 hover:bg-gray-100 cursor-pointer"
+                      id="Random"
+                    >
+                      Random
+                    </li>
+                    <li
+                      class="p-2 hover:bg-gray-100 cursor-pointer"
+                      id="Reverse"
+                    >
+                      Reverse
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
+            <button
+              class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-600 space-x-0 sm:space-x-2"
+              id="cocktail-sort"
+            >
+              Cocktail sort
+            </button>
           </div>
-        </div>
-          <button class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-600 space-x-0 sm:space-x-2" id="cocktail-sort">Cocktail sort</button>
-        </div>
         </div>
       </div>
       <div class="overflow-x-auto shadow-custom rounded-2xl">
-        <table class="w-full text-sm  ">
+        <table class="w-full text-sm">
           <thead class="bg-thead-light text-heading-light">
             <tr class="text-left">
               <th class="p-3 font-semibold" scope="col">Book ID</th>
@@ -202,210 +219,209 @@
               <th class="p-3 font-semibold" scope="col">Book Title</th>
               <th class="p-3 font-semibold" scope="col">Author</th>
               <th class="p-3 font-semibold" scope="col">Pages</th>
-              <th class="p-3 font-semibold " scope="col">Status</th>
+              <th class="p-3 font-semibold" scope="col">Status</th>
             </tr>
           </thead>
-        <tbody class="text-left text-md" id="books-container">
-          {% include 'book/partials/books-table.html' %}
-        </tbody>
+          <tbody class="text-left text-md" id="books-container">
+            {% include 'book/partials/books-table.html' %}
+          </tbody>
+          <tbody class="text-left text-md hidden" id="skeleton-container">
+            <tr class="space-y-2.5 animate-pulse">
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-40"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+            </tr>
+            <tr class="space-y-2.5 animate-pulse">
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-40"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+            </tr>
+            <tr class="space-y-2.5 animate-pulse">
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-40"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+            </tr>
+            <tr class="space-y-2.5 animate-pulse">
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-40"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+            </tr>
+            <tr class="space-y-2.5 animate-pulse">
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-40"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+            </tr>
+            <tr class="space-y-2.5 animate-pulse">
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-40"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
+                ></div>
+              </td>
+              <td class="px-3 py-1.5">
+                <div
+                  class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
+                ></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-        <tbody class="text-left text-md hidden" id="skeleton-container">
-          <tr class="space-y-2.5 animate-pulse">
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-40"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-          </tr>
-          <tr class="space-y-2.5 animate-pulse">
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-40"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-          </tr>
-          <tr class="space-y-2.5 animate-pulse">
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-40"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-          </tr>
-          <tr class="space-y-2.5 animate-pulse">
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-40"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-          </tr>
-          <tr class="space-y-2.5 animate-pulse">
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-40"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-          </tr>
-          <tr class="space-y-2.5 animate-pulse">
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-40"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 ms-2 bg-gray-200 rounded-full dark:bg-gray-600 w-24"
-              ></div>
-            </td>
-            <td class="px-3 py-1.5">
-              <div
-                class="h-4 bg-gray-300 rounded-full dark:bg-gray-700 w-32"
-              ></div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-  
   </div>
   <!--Sliding Modal From Right-->
   <div
@@ -550,8 +566,7 @@
           >
             <p id="sorting-data-format-container">Reverse</p>
           </div>
-          -->
-          </li>
+          --></li>
           <li class="mb-10 ms-8">
             <span
               class="absolute flex items-center justify-center w-8 h-8 bg-white rounded-full -start-3.5 ring-8 ring-white"
@@ -564,12 +579,12 @@
                 stroke="currentColor"
                 class="size-7"
               >
-              <path 
-                stroke-linecap="round" 
-                stroke-linejoin="round" 
-                d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" 
-              />
-            </svg>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
             </span>
             <h3
               class="flex items-start mb-1 text-lg font-semibold text-gray-900"
@@ -593,33 +608,81 @@
     </div>
   </div>
   <form class="bg-white max-w-xl mx-auto p-8 rounded-lg">
-    <div class ="flex items-center justify-center mb-4">
-      <h1 class ="text-xl">Add Books</h1>
+    <div class="flex items-center justify-center mb-4">
+      <h1 class="text-xl">Add Books</h1>
     </div>
     <div class="grid md:grid-cols-2 md:gap-6">
       <div class="relative z-0 w-full mb-5 group">
-          <input type="text" name="floating_title" id="floating_title" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-          <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
+        <input
+          type="text"
+          name="floating_title"
+          id="floating_title"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="floating_first_name"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Title</label
+        >
       </div>
       <div class="relative z-0 w-full mb-5 group">
-          <input type="text" name="floating_category" id="floating_category" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-          <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category</label>
+        <input
+          type="text"
+          name="floating_category"
+          id="floating_category"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="floating_last_name"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Category</label
+        >
       </div>
     </div>
     <div class="grid md:grid-cols-2 md:gap-6">
       <div class="relative z-0 w-full mb-5 group">
-          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_author" id="floating_author" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-          <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Author</label>
+        <input
+          type="tel"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          name="floating_author"
+          id="floating_author"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="floating_phone"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Author</label
+        >
       </div>
       <div class="relative z-0 w-full mb-5 group">
-          <input type="text" name="floating_pages" id="floating_pages" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-          <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Pages</label>
+        <input
+          type="text"
+          name="floating_pages"
+          id="floating_pages"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="floating_company"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Pages</label
+        >
       </div>
     </div>
-    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto min-w-full py-2.5 text-center dark:bg-blue-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ADD </button>
+    <button
+      type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto min-w-full py-2.5 text-center dark:bg-blue-900 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      ADD
+    </button>
   </form>
-
-
 
   <script src="{{ url_for('static', filename='script/main.js') }}"></script>
 </body>
