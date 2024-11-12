@@ -33,8 +33,8 @@ sortChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
     countTextContainer.textContent = choice.id;
     sortDropdown.classList.toggle("hidden");
-  })
-})
+  });
+});
 
 // Format Dropdown
 const caseDropdown = document.getElementById("case-dropdown");
@@ -51,12 +51,11 @@ caseChoices.forEach((choice) => {
   choice.addEventListener("click", async function () {
     formatTextContainer.textContent = choice.id;
     caseDropdown.classList.toggle("hidden");
-  })
-})
+  });
+});
 
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
-
 
 // Alert
 const toast = document.getElementById("toast-default");
@@ -101,7 +100,7 @@ const modalCloseButton = document.getElementById("close-modal");
 //           .toLowerCase()}/view">${book["title"]}</a></td>
 //         <td class="px-3 py-1.5">${book["author"]} </td>
 //         <td class="px-3 py-1.5">${book["pages"]} </td>
-//         <td class="px-3 py-1.5"> 
+//         <td class="px-3 py-1.5">
 //           <button class="rounded-md min-w-20 p-1 border ${borrowerColor}">
 //             ${borrowerStatus}
 //           </button>
