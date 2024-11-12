@@ -52,13 +52,14 @@ def view(title):
     return render_template("book/view.html", book=book)
 
 
-@bp.route("/sort/<sortingType>")
-def sort(sortingType):
-    start_time = time.time()
-    books = get_sorted_book(sortingType)
-    time_execution = time.time() - start_time
+@bp.route("/sort")
+def sort():
+    sort_type = "cocktail"
+    data_count = request.args.get("count", "")
+    data_format = request.args.get("format", "")
+    sorted_books, time_execution = get_sorted_book(data_count, data_format, sort_type)
 
-    books = [dict(book) for book in books]
+    books = [dict(book) for book in sorted_books]
 
     response = {
         "books": books,
@@ -87,14 +88,26 @@ def get_target_category(course):
     return course_mapping[course]
 
 
-def get_sorted_book(sortingName):
+def get_sorted_book(data_count, data_format, sort_type):
     db = get_db()
-    books = db.execute("SELECT * FROM book").fetchall()
+    if data_format == "sorted":
+        books = db.execute("SELECT * FROM book ORDER BY title ASC LIMIT ?", (data_count,)).fetchall()
+    elif data_format == "reverse":
+        books = db.execute("SELECT * FROM book ORDER BY title DESC LIMIT ?", (data_count,)).fetchall()
+    elif data_format == "random":
+        books = db.execute("SELECT * FROM book LIMIT ?", (data_count,)).fetchall()
+
     books = [book for book in books]
 
-    if sortingName == "cocktail":
-        return cocktail_sort(books, "title")
-    elif sortingName == "insertion":
-        return insertion_sort(books, "title")
-    elif sortingName == "treesort":
-        return tree_sort(books, "title")
+    start_time = time.time()
+
+    if sort_type == "cocktail":
+        sorted_books = cocktail_sort(books, "title")
+    elif sort_type == "insertion":
+        sorted_books = insertion_sort(books, "title")
+    elif sort_type == "treesort":
+        sorted_books = tree_sort(books, "title")
+
+    time_execution = time.time() - start_time
+
+    return sorted_books, time_execution

@@ -18,7 +18,7 @@ searchBox.addEventListener("input", async function () {
   booksContainer.innerHTML += html;
 });
 
-// Count Dropdown
+// Data Count Dropdown
 const countDropdown = document.getElementById("count-dropdown");
 const countButton = document.getElementById("count-button");
 countButton?.addEventListener("click", () => {
@@ -36,7 +36,7 @@ countChoices.forEach((choice) => {
   });
 });
 
-// Format Dropdown
+// Count Format Dropdown
 const caseDropdown = document.getElementById("case-dropdown");
 const caseButton = document.getElementById("case-button");
 caseButton?.addEventListener("click", () => {
@@ -56,6 +56,34 @@ caseChoices.forEach((choice) => {
 
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
+
+const sortButton = document.getElementById("sort-button");
+sortButton.addEventListener("click", async function () {
+  let count = countTextContainer.textContent;
+  let format = formatTextContainer.textContent;
+  let response = await fetch(
+    `/books/sort?count=${count.replace(",", "")}&format=${format}`
+  );
+  let book_data = await response.json();
+  let row_data = "";
+  book_data.books.forEach((book) => {
+    row_data += `
+      <tr>
+        <td class="px-3 py-1.5">${book["id"]} </td>
+        <td class="px-3 py-1.5">${book["category"]} </td>
+        <td class="px-3 py-1.5"><a href="books/${book["title"]
+          .replace(" ", "-")
+          .toLowerCase()}/view">${book["title"]}</a></td>
+        <td class="px-3 py-1.5">${book["author"]} </td>
+        <td class="px-3 py-1.5">${book["pages"]} </td>
+        <td class="px-3 py-1.5">
+        </td>
+      </tr>
+      `;
+  });
+
+  booksContainer.innerHTML = row_data;
+});
 
 // Alert
 const toast = document.getElementById("toast-default");
