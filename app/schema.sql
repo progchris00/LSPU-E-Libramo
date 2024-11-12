@@ -8,35 +8,7 @@ CREATE TABLE user (
   password TEXT NOT NULL
 );
 
-CREATE TABLE reverse_book (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  author TEXT NOT NULL,
-  title TEXT NOT NULL,
-  category TEXT NOT NULL,
-  is_borrowed INTEGER NOT NULL,
-  pages INTEGER NOT NULL,
-  borrower_id INTEGER,
-  cover TEXT,
-  rating REAL,
-  book_description TEXT,
-  FOREIGN KEY (borrower_id) REFERENCES user (id)
-);
-
-CREATE TABLE sorted_book (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  author TEXT NOT NULL,
-  title TEXT NOT NULL,
-  category TEXT NOT NULL,
-  is_borrowed INTEGER NOT NULL,
-  pages INTEGER NOT NULL,
-  borrower_id INTEGER,
-  cover TEXT,
-  rating REAL,
-  book_description TEXT,
-  FOREIGN KEY (borrower_id) REFERENCES user (id)
-);
-
-CREATE TABLE random_book (
+CREATE TABLE book (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   author TEXT NOT NULL,
   title TEXT NOT NULL,
