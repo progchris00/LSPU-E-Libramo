@@ -203,12 +203,16 @@ function displayToastNotif() {
 }
 
 function displaySortingDetailsModal(timeExecution, sortingName) {
-  sortingNameContainer.textContent = sortingName;
+  sortingNameContainer.textContent = "Sort name:";
+  generateContainer.textContent = "Data count:";
+  formatContainer.textContent = "Data format:";
+
+  sortingNameContainer.textContent += ` ${sortingName}`;
   const sortTimeExecution = timeExecution;
 
-  executionContainer.textContent = sortTimeExecution;
-  generateContainer.textContent = countTextContainer.textContent;
-  formatContainer.textContent = formatTextContainer.textContent;
+  executionContainer.textContent += sortTimeExecution;
+  generateContainer.textContent += ` ${countTextContainer.textContent}`;
+  formatContainer.textContent += ` ${formatTextContainer.textContent}`;
 
   if (sortTimeExecution < 1) {
     speedContainer.textContent = "Fast";
