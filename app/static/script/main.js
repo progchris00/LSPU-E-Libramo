@@ -2,6 +2,32 @@ document.getElementById("profile-button")?.addEventListener("click", () => {
   document.getElementById("profile-menu")?.classList.toggle("hidden");
 });
 
+// Classes
+class Dropdown {
+  constructor(menu, button, textContainer, choicesContainer) {
+    this.menu = menu;
+    this.button = button;
+    this.textContainer = textContainer;
+    this.choicesContainer = choicesContainer;
+    this.choices = this.choicesContainer.querySelectorAll("li");
+  }
+
+  applyDropdownToggler() {
+    this.button.addEventListener("click", () => {
+      this.menu.classList.toggle("hidden");
+    });
+  }
+
+  applyChoiceListener() {
+    this.choices.forEach((choice) => {
+      choice.addEventListener("click", () => {
+        this.textContainer.textContent = choice.textContent;
+        this.menu.classList.toggle("hidden");
+      });
+    });
+  }
+}
+
 // Ajax searching
 let searchBox = document.getElementById("search-box");
 searchBox.addEventListener("input", async function () {
@@ -14,24 +40,6 @@ searchBox.addEventListener("input", async function () {
   const html = await response.text();
 
   booksContainer.innerHTML += html;
-});
-
-// Data Count Dropdown
-const countDropdown = document.getElementById("count-dropdown");
-const countButton = document.getElementById("count-button");
-countButton?.addEventListener("click", () => {
-  countDropdown.classList.toggle("hidden");
-});
-const countTextContainer = document.getElementById("count-text-container");
-
-const countContainer = document.querySelector(".count-container");
-const countChoices = countContainer.querySelectorAll("li");
-
-countChoices.forEach((choice) => {
-  choice.addEventListener("click", async function () {
-    countTextContainer.textContent = choice.id;
-    countDropdown.classList.toggle("hidden");
-  });
 });
 
 // Count Format Dropdown
@@ -183,3 +191,25 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
     speedContainer.className += " border-red-600 text-red-600 bg-red-200";
   }
 }
+
+// Data Count Dropdown
+const dataCountMenu = document.getElementById("datacount-dropdown");
+const dataCountButton = document.getElementById("datacount-button");
+const dataCountTextContainer = document.getElementById(
+  "datacount-text-container"
+);
+const dataCountChoicesContainer = document.getElementById(
+  "datacount-choice-container"
+);
+
+const dataCountDropdown = new Dropdown(
+  dataCountMenu,
+  dataCountButton,
+  dataCountTextContainer,
+  dataCountChoicesContainer
+);
+
+dataCountDropdown.applyDropdownToggler();
+dataCountDropdown.applyChoiceListener();
+
+// Data Count Dropdown end
