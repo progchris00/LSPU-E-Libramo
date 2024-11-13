@@ -1,7 +1,5 @@
-const profileButton = document.getElementById("profile-button");
-const profileMenu = document.getElementById("profile-menu");
-profileButton?.addEventListener("click", () => {
-  profileMenu.classList.toggle("hidden");
+document.getElementById("profile-button")?.addEventListener("click", () => {
+  document.getElementById("profile-menu")?.classList.toggle("hidden");
 });
 
 // Ajax searching
