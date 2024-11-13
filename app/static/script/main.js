@@ -113,6 +113,12 @@ const toastViewDetails = document.getElementById("view-details-button");
 const executionContainer = document.getElementById("time-execution-container");
 const sortingNameContainer = document.getElementById("sorting-name-container");
 const speedContainer = document.getElementById("speed-container");
+const generateContainer = document.getElementById(
+  "sorting-generate-data-container"
+);
+const formatContainer = document.getElementById(
+  "sorting-data-format-container"
+);
 const modal = document.getElementById("default-modal");
 const modalCloseButton = document.getElementById("close-modal");
 
@@ -201,6 +207,8 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
   const sortTimeExecution = timeExecution;
 
   executionContainer.textContent = sortTimeExecution;
+  generateContainer.textContent = countTextContainer.textContent;
+  formatContainer.textContent = formatTextContainer.textContent;
 
   if (sortTimeExecution < 1) {
     speedContainer.textContent = "Fast";
