@@ -90,12 +90,19 @@ def get_target_category(course):
 
 def get_sorted_book(data_count, data_format, sort_type):
     db = get_db()
-    if data_format == "sorted":
-        books = db.execute("SELECT * FROM book ORDER BY title ASC LIMIT ?", (data_count,)).fetchall()
-    elif data_format == "reverse":
-        books = db.execute("SELECT * FROM book ORDER BY title DESC LIMIT ?", (data_count,)).fetchall()
-    elif data_format == "random":
-        books = db.execute("SELECT * FROM book LIMIT ?", (data_count,)).fetchall()
+
+    order_by = { 
+        "sorted": "ORDER BY title ASC",
+        "reverse": "ORDER BY title DESC",
+        "random" : "ORDER BY id",
+    }
+
+    if data_count == "1000":
+        books = db.execute(f"SELECT * FROM small_sorted {order_by[data_format]}").fetchall()
+    elif data_count == "5000":
+        books = db.execute(f"SELECT * FROM medium_sorted {order_by[data_format]}").fetchall()
+    elif data_count == "10000":
+        books = db.execute(f"SELECT * FROM large_sorted {order_by[data_format]}").fetchall()
 
     books = [book for book in books]
 

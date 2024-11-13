@@ -59,6 +59,9 @@ const skeletonContainer = document.getElementById("skeleton-container");
 
 const sortButton = document.getElementById("sort-button");
 sortButton.addEventListener("click", async function () {
+  booksContainer.innerHTML = "";
+  skeletonContainer.classList.toggle("hidden");
+
   let count = countTextContainer.textContent;
   let format = formatTextContainer.textContent;
   let response = await fetch(
@@ -66,23 +69,39 @@ sortButton.addEventListener("click", async function () {
   );
   let book_data = await response.json();
   let row_data = "";
-  book_data.books.forEach((book) => {
-    row_data += `
-      <tr>
-        <td class="px-3 py-1.5">${book["id"]} </td>
-        <td class="px-3 py-1.5">${book["category"]} </td>
-        <td class="px-3 py-1.5"><a href="books/${book["title"]
-          .replace(" ", "-")
-          .toLowerCase()}/view">${book["title"]}</a></td>
-        <td class="px-3 py-1.5">${book["author"]} </td>
-        <td class="px-3 py-1.5">${book["pages"]} </td>
-        <td class="px-3 py-1.5">
-        </td>
-      </tr>
-      `;
-  });
+  let borrowerColor;
+  let borrowerStatus;
 
+  book_data.books.forEach((book) => {
+    if (book["is_borrowed"] == 1) {
+      borrowerColor = "border-red-600 text-red-600 bg-red-200";
+      borrowerStatus = "Borrowed";
+    } else {
+      borrowerColor = "border-green-600 text-green-600 bg-green-200";
+      borrowerStatus = "Available";
+    }
+    row_data += `
+        <tr>
+          <td class="px-3 py-1.5">${book["id"]} </td>
+          <td class="px-3 py-1.5">${book["category"]} </td>
+          <td class="px-3 py-1.5"><a href="books/${book["title"]
+            .replace(" ", "-")
+            .toLowerCase()}/view">${book["title"]}</a></td>
+          <td class="px-3 py-1.5">${book["author"]} </td>
+          <td class="px-3 py-1.5">${book["pages"]} </td>
+          <td class="px-3 py-1.5">
+            <button class="rounded-md min-w-20 p-1 border ${borrowerColor}">
+              ${borrowerStatus}
+            </button>
+          </td>
+        </tr>
+        `;
+  });
+  skeletonContainer.classList.toggle("hidden");
   booksContainer.innerHTML = row_data;
+
+  displaySortingDetailsModal(book_data.time_execution, "Cocktail");
+  displayToastNotif();
 });
 
 // Alert
@@ -181,7 +200,7 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
   sortingNameContainer.textContent = sortingName;
   const sortTimeExecution = timeExecution;
 
-  executionContainer.textContent = sortTimeExecution.toFixed(2);
+  executionContainer.textContent = sortTimeExecution;
 
   if (sortTimeExecution < 1) {
     speedContainer.textContent = "Fast";
