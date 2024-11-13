@@ -210,7 +210,7 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
   sortingNameContainer.textContent += ` ${sortingName}`;
   const sortTimeExecution = timeExecution;
 
-  executionContainer.textContent += sortTimeExecution;
+  executionContainer.textContent = sortTimeExecution;
   generateContainer.textContent += ` ${countTextContainer.textContent}`;
   formatContainer.textContent += ` ${formatTextContainer.textContent}`;
 
