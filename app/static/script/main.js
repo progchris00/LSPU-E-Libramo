@@ -9,6 +9,7 @@ class Dropdown {
     this.button = button;
     this.choicesContainer = choicesContainer;
     this.choices = this.choicesContainer.querySelectorAll("li");
+    this.choice = null;
     this.selected = selected;
     this.icon = icon;
   }
@@ -26,12 +27,17 @@ class Dropdown {
   applyChoiceListener() {
     this.choices.forEach((choice) => {
       choice.addEventListener("click", () => {
+        this.choice = choice.getAttribute("data-value");
         this.selected.textContent = choice.textContent;
         this.icon.classList.add("hidden");
         this.menu.classList.toggle("hidden");
         this.button.classList.add("gap-2");
       });
     });
+  }
+
+  getSelectedValue() {
+    return this.choice;
   }
 }
 
@@ -57,11 +63,9 @@ sortButton.addEventListener("click", async function () {
   booksContainer.innerHTML = "";
   skeletonContainer.classList.toggle("hidden");
 
-  let count = countTextContainer.textContent;
-  let format = formatTextContainer.textContent;
-  let response = await fetch(
-    `/books/sort?count=${count.replace(",", "")}&format=${format}`
-  );
+  let count = dataCountDropdown.getSelectedValue();
+  let format = dataFormatDropdown.getSelectedValue();
+  let response = await fetch(`/books/sort?count=${count}&format=${format}`);
   let book_data = await response.json();
   let row_data = "";
   let borrowerColor;
@@ -159,8 +163,8 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
   const sortTimeExecution = timeExecution;
 
   executionContainer.textContent = sortTimeExecution;
-  generateContainer.textContent += ` ${countTextContainer.textContent}`;
-  formatContainer.textContent += ` ${formatTextContainer.textContent}`;
+  generateContainer.textContent += ` ${dataCountDropdown.getSelectedValue()}`;
+  formatContainer.textContent += ` ${dataFormatDropdown.getSelectedValue()}`;
 
   if (sortTimeExecution < 1) {
     speedContainer.textContent = "Fast";
