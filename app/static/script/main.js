@@ -42,24 +42,6 @@ searchBox.addEventListener("input", async function () {
   booksContainer.innerHTML += html;
 });
 
-// Count Format Dropdown
-const caseDropdown = document.getElementById("case-dropdown");
-const caseButton = document.getElementById("case-button");
-caseButton?.addEventListener("click", () => {
-  caseDropdown.classList.toggle("hidden");
-});
-const formatTextContainer = document.getElementById("format-text-container");
-
-const caseContainer = document.querySelector(".case-container");
-const caseChoices = caseContainer.querySelectorAll("li");
-
-caseChoices.forEach((choice) => {
-  choice.addEventListener("click", async function () {
-    formatTextContainer.textContent = choice.id;
-    caseDropdown.classList.toggle("hidden");
-  });
-});
-
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
 
@@ -212,4 +194,22 @@ const dataCountDropdown = new Dropdown(
 dataCountDropdown.applyDropdownToggler();
 dataCountDropdown.applyChoiceListener();
 
-// Data Count Dropdown end
+// Data Format Dropdown
+const dataFormatMenu = document.getElementById("dataformat-dropdown");
+const dataFormatButton = document.getElementById("dataformat-button");
+const dataFormatTextContainer = document.getElementById(
+  "dataformat-text-container"
+);
+const dataFormatChoicesContainer = document.getElementById(
+  "dataformat-choice-container"
+);
+
+const dataFormatDropdown = new Dropdown(
+  dataFormatMenu,
+  dataFormatButton,
+  dataFormatTextContainer,
+  dataFormatChoicesContainer
+);
+
+dataFormatDropdown.applyDropdownToggler();
+dataFormatDropdown.applyChoiceListener();
