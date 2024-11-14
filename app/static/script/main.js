@@ -4,12 +4,13 @@ document.getElementById("profile-button")?.addEventListener("click", () => {
 
 // Classes
 class Dropdown {
-  constructor(menu, button, textContainer, choicesContainer) {
+  constructor(menu, button, selected, choicesContainer, icon) {
     this.menu = menu;
     this.button = button;
-    this.textContainer = textContainer;
     this.choicesContainer = choicesContainer;
     this.choices = this.choicesContainer.querySelectorAll("li");
+    this.selected = selected;
+    this.icon = icon;
   }
 
   applyDropdownToggler() {
@@ -25,8 +26,10 @@ class Dropdown {
   applyChoiceListener() {
     this.choices.forEach((choice) => {
       choice.addEventListener("click", () => {
-        this.textContainer.textContent = choice.textContent;
+        this.selected.textContent = choice.textContent;
+        this.icon.classList.add("hidden");
         this.menu.classList.toggle("hidden");
+        this.button.classList.add("gap-2");
       });
     });
   }
@@ -181,18 +184,20 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
 // Data Count Dropdown
 const dataCountMenu = document.getElementById("datacount-dropdown");
 const dataCountButton = document.getElementById("datacount-button");
-const dataCountTextContainer = document.getElementById(
-  "datacount-text-container"
-);
+const dataCountSelected = document.getElementById("datacount-selected");
 const dataCountChoicesContainer = document.getElementById(
   "datacount-choice-container"
+);
+const dataCountDropdownIcon = document.getElementById(
+  "datacount-dropdown-icon"
 );
 
 const dataCountDropdown = new Dropdown(
   dataCountMenu,
   dataCountButton,
-  dataCountTextContainer,
-  dataCountChoicesContainer
+  dataCountSelected,
+  dataCountChoicesContainer,
+  dataCountDropdownIcon
 );
 
 dataCountDropdown.applyDropdownToggler();
@@ -201,18 +206,20 @@ dataCountDropdown.applyChoiceListener();
 // Data Format Dropdown
 const dataFormatMenu = document.getElementById("dataformat-dropdown");
 const dataFormatButton = document.getElementById("dataformat-button");
-const dataFormatTextContainer = document.getElementById(
-  "dataformat-text-container"
-);
+const dataFormatSelected = document.getElementById("dataformat-selected");
 const dataFormatChoicesContainer = document.getElementById(
   "dataformat-choice-container"
+);
+const dataFormatDropdownIcon = document.getElementById(
+  "dataformat-dropdown-icon"
 );
 
 const dataFormatDropdown = new Dropdown(
   dataFormatMenu,
   dataFormatButton,
-  dataFormatTextContainer,
-  dataFormatChoicesContainer
+  dataFormatSelected,
+  dataFormatChoicesContainer,
+  dataFormatDropdownIcon
 );
 
 dataFormatDropdown.applyDropdownToggler();

@@ -130,10 +130,14 @@
                   <span class="">Data count</span>
                   <img
                     src="{{ url_for('static', filename='images/dropdown.png')}}"
-                    class="w-4 h-6"
+                    class="w-4"
+                    id="datacount-dropdown-icon"
                   />
                 </div>
-                <span id="datacount-selected"></span>
+                <span
+                  id="datacount-selected"
+                  class="text-blue-900 font-semibold"
+                ></span>
               </button>
               <div
                 class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
@@ -165,18 +169,21 @@
             </div>
             <div class="relative">
               <button
-                class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 space-x-0 sm:space-x-2"
+                class="flex justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
                 id="dataformat-button"
               >
+                <div class="flex items-center gap-2">
+                  <span class="">Data format</span>
+                  <img
+                    src="{{ url_for('static', filename='images/dropdown.png')}}"
+                    class="w-4"
+                    id="dataformat-dropdown-icon"
+                  />
+                </div>
                 <span
-                  class="whitespace-nowrap md:text-sm ml-1"
-                  id="dataformat-text-container"
-                  >Data format</span
-                >
-                <img
-                  src="{{ url_for('static', filename='images/dropdown.png')}}"
-                  class="w-7 sm:mt-0 sm:ml-1 md:w-4 h-6"
-                />
+                  id="dataformat-selected"
+                  class="text-blue-900 font-semibold"
+                ></span>
               </button>
               <div
                 class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
@@ -207,7 +214,7 @@
               </div>
             </div>
             <button
-              class="flex flex-row sm:flex-row justify-center items-center px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-600 space-x-0 sm:space-x-2"
+              class="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-600"
               id="sort-button"
             >
               Cocktail sort
