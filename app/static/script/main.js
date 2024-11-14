@@ -13,8 +13,12 @@ class Dropdown {
   }
 
   applyDropdownToggler() {
-    this.button.addEventListener("click", () => {
-      this.menu.classList.toggle("hidden");
+    document.addEventListener("click", (event) => {
+      if (this.button.contains(event.target)) {
+        this.menu.classList.toggle("hidden");
+      } else {
+        this.menu.classList.add("hidden");
+      }
     });
   }
 
