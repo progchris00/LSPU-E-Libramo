@@ -60,11 +60,15 @@ const skeletonContainer = document.getElementById("skeleton-container");
 
 const sortButton = document.getElementById("sort-button");
 sortButton.addEventListener("click", async function () {
-  booksContainer.innerHTML = "";
-  skeletonContainer.classList.toggle("hidden");
-
   let count = dataCountDropdown.getSelectedValue();
   let format = dataFormatDropdown.getSelectedValue();
+
+  if (!count || !format) {
+    return;
+  }
+
+  booksContainer.innerHTML = "";
+  skeletonContainer.classList.toggle("hidden");
   let response = await fetch(`/books/sort?count=${count}&format=${format}`);
   let book_data = await response.json();
   let row_data = "";
