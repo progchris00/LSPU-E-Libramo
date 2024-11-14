@@ -120,6 +120,7 @@ const formatContainer = document.getElementById(
 );
 const modal = document.getElementById("default-modal");
 const modalCloseButton = document.getElementById("close-modal");
+const viewResultButton = document.getElementById("view-result");
 
 closeButton.addEventListener("click", function () {
   toast.classList.remove("animate-slide-in-right");
@@ -143,6 +144,11 @@ toastViewDetails.addEventListener("click", () => {
 
 // Modal Logic
 modalCloseButton.addEventListener("click", function () {
+  modal.classList.toggle("hidden");
+  modal.classList.toggle("flex");
+});
+
+viewResultButton.addEventListener("click", () => {
   modal.classList.toggle("hidden");
   modal.classList.toggle("flex");
 });
