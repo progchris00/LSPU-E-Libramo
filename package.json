@@ -4,6 +4,8 @@
   },
   "scripts": {
     "build": "tailwindcss -i ./app/static/style.css -o ./app/static/output.css",
-    "watch": "tailwindcss -i ./app/static/style.css -o ./app/static/output.css --watch"
+    "watch": "tailwindcss -i ./app/static/style.css -o ./app/static/output.css --watch",
+    "activate": ".venv/scripts/activate",
+    "run-server": "flask run --debug"
   }
 }

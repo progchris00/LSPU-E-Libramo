@@ -22,7 +22,7 @@ def index():
     else:
         course = g.user["course"]
         target_category = get_target_category(course)
-        all_books = db.execute("SELECT * FROM book").fetchall()
+        all_books = db.execute("SELECT * FROM book LIMIT 10").fetchall()
 
         target_books = [book for book in all_books if book["category"] == target_category]
         other_books = [book for book in all_books if book["category"] != target_category]

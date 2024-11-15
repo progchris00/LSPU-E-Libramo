@@ -1,10 +1,5 @@
-function addGlobalEventListener(type, selector, callback) {
-  document.addEventListener(type, (e) => {
-    if (document.querySelector(selector).contains(e.target)) {
-      callback();
-    }
-  });
-}
+const booksContainer = document.getElementById("books-container");
+const skeletonContainer = document.getElementById("skeleton-container");
 
 addGlobalEventListener("click", "#profile-button", () => {
   document.getElementById("profile-menu").classList.toggle("hidden");
@@ -63,51 +58,28 @@ searchBox.addEventListener("input", async function () {
   booksContainer.innerHTML += html;
 });
 
-const booksContainer = document.getElementById("books-container");
-const skeletonContainer = document.getElementById("skeleton-container");
-
 document
   .getElementById("sort-button")
   .addEventListener("click", async function () {
-    let count = dataCountDropdown.getSelectedValue();
-    let format = dataFormatDropdown.getSelectedValue();
+    let dataCount = dataCountDropdown.getSelectedValue();
+    let dataFormat = dataFormatDropdown.getSelectedValue();
 
-    if (!count || !format) {
+    if (!dataCount || !dataFormat) {
       return;
     }
 
+    let response = await fetch(
+      `/books/sort?count=${dataCount}&format=${dataFormat}`
+    );
+
     booksContainer.innerHTML = "";
     skeletonContainer.classList.toggle("hidden");
-    let response = await fetch(`/books/sort?count=${count}&format=${format}`);
+
     let book_data = await response.json();
     let row_data = "";
-    let borrowerColor;
-    let borrowerStatus;
 
     book_data.books.forEach((book) => {
-      if (book["is_borrowed"] == 1) {
-        borrowerColor = "border-red-600 text-red-600 bg-red-200";
-        borrowerStatus = "Borrowed";
-      } else {
-        borrowerColor = "border-green-600 text-green-600 bg-green-200";
-        borrowerStatus = "Available";
-      }
-      row_data += `
-        <tr>
-          <td class="px-3 py-1.5">${book["id"]} </td>
-          <td class="px-3 py-1.5">${book["category"]} </td>
-          <td class="px-3 py-1.5"><a href="books/${book["title"]
-            .replace(" ", "-")
-            .toLowerCase()}/view">${book["title"]}</a></td>
-          <td class="px-3 py-1.5">${book["author"]} </td>
-          <td class="px-3 py-1.5">${book["pages"]} </td>
-          <td class="px-3 py-1.5">
-            <button class="rounded-md min-w-20 p-1 border ${borrowerColor}">
-              ${borrowerStatus}
-            </button>
-          </td>
-        </tr>
-        `;
+      row_data += renderBookRow(book);
     });
     skeletonContainer.classList.toggle("hidden");
     booksContainer.innerHTML = row_data;
@@ -202,6 +174,40 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
     );
     speedContainer.className += " border-red-600 text-red-600 bg-red-200";
   }
+}
+
+function addGlobalEventListener(type, selector, callback) {
+  document.addEventListener(type, (e) => {
+    if (document.querySelector(selector).contains(e.target)) {
+      callback();
+    }
+  });
+}
+
+function renderBookRow(book) {
+  const borrowerButtonColor =
+    book["is_borrowed"] == 1
+      ? "border-red-600 text-red-600 bg-red-200"
+      : "border-green-600 text-green-600 bg-green-200";
+  const borrowButtonStatus =
+    book["is_borrowed"] == 1 ? "Borrowed" : "Available";
+
+  bookView = book["title"].replace(" ", "-").toLowerCase();
+
+  return `
+    <tr>
+      <td class="px-3 py-1.5">${book["id"]} </td>
+      <td class="px-3 py-1.5">${book["category"]} </td>
+      <td class="px-3 py-1.5"><a href="books/${bookView}/view">${book["title"]}</a></td>
+      <td class="px-3 py-1.5">${book["author"]} </td>
+      <td class="px-3 py-1.5">${book["pages"]} </td>
+      <td class="px-3 py-1.5">
+        <button class="rounded-md min-w-20 p-1 border ${borrowerButtonColor}">
+          ${borrowButtonStatus}
+        </button>
+      </td>
+    </tr>
+    `;
 }
 
 // Data Count Dropdown
