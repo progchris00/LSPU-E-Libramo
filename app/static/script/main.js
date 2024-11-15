@@ -1,29 +1,3 @@
-// Profile Menu
-const booksContainer = document.getElementById("books-container");
-const skeletonContainer = document.getElementById("skeleton-container");
-
-// Data Count Dropdown
-const dataCountMenu = document.getElementById("datacount-dropdown");
-const dataCountButton = document.getElementById("datacount-button");
-const dataCountSelected = document.getElementById("datacount-selected");
-const dataCountChoicesContainer = document.getElementById(
-  "datacount-choice-container"
-);
-const dataCountDropdownIcon = document.getElementById(
-  "datacount-dropdown-icon"
-);
-
-// Data Format Dropdown
-const dataFormatMenu = document.getElementById("dataformat-dropdown");
-const dataFormatButton = document.getElementById("dataformat-button");
-const dataFormatSelected = document.getElementById("dataformat-selected");
-const dataFormatChoicesContainer = document.getElementById(
-  "dataformat-choice-container"
-);
-const dataFormatDropdownIcon = document.getElementById(
-  "dataformat-dropdown-icon"
-);
-
 function displayToastNotif() {
   toast.classList.remove("animate-slide-out-right");
   toast.classList.add("animate-slide-in-right");
@@ -96,10 +70,6 @@ function renderBookRow(book) {
     `;
 }
 
-addGlobalEventListener("click", "#profile-button", () => {
-  document.getElementById("profile-menu").classList.toggle("hidden");
-});
-
 // Classes
 class Dropdown {
   constructor(menu, button, selected, choicesContainer, icon) {
@@ -138,6 +108,59 @@ class Dropdown {
     return this.choice;
   }
 }
+
+// Profile Menu
+const booksContainer = document.getElementById("books-container");
+const skeletonContainer = document.getElementById("skeleton-container");
+
+// Data Count Dropdown
+const dataCountMenu = document.getElementById("datacount-dropdown");
+const dataCountButton = document.getElementById("datacount-button");
+const dataCountSelected = document.getElementById("datacount-selected");
+const dataCountChoicesContainer = document.getElementById(
+  "datacount-choice-container"
+);
+const dataCountDropdownIcon = document.getElementById(
+  "datacount-dropdown-icon"
+);
+
+// Data Format Dropdown
+const dataFormatMenu = document.getElementById("dataformat-dropdown");
+const dataFormatButton = document.getElementById("dataformat-button");
+const dataFormatSelected = document.getElementById("dataformat-selected");
+const dataFormatChoicesContainer = document.getElementById(
+  "dataformat-choice-container"
+);
+const dataFormatDropdownIcon = document.getElementById(
+  "dataformat-dropdown-icon"
+);
+
+// Class instantiation
+const dataCountDropdown = new Dropdown(
+  dataCountMenu,
+  dataCountButton,
+  dataCountSelected,
+  dataCountChoicesContainer,
+  dataCountDropdownIcon
+);
+
+dataCountDropdown.applyDropdownToggler();
+dataCountDropdown.applyChoiceListener();
+
+const dataFormatDropdown = new Dropdown(
+  dataFormatMenu,
+  dataFormatButton,
+  dataFormatSelected,
+  dataFormatChoicesContainer,
+  dataFormatDropdownIcon
+);
+
+dataFormatDropdown.applyDropdownToggler();
+dataFormatDropdown.applyChoiceListener();
+
+addGlobalEventListener("click", "#profile-button", () => {
+  document.getElementById("profile-menu").classList.toggle("hidden");
+});
 
 // Ajax searching
 let searchBox = document.getElementById("search-box");
@@ -233,25 +256,3 @@ viewResultButton.addEventListener("click", () => {
   modal.classList.toggle("hidden");
   modal.classList.toggle("flex");
 });
-
-const dataCountDropdown = new Dropdown(
-  dataCountMenu,
-  dataCountButton,
-  dataCountSelected,
-  dataCountChoicesContainer,
-  dataCountDropdownIcon
-);
-
-dataCountDropdown.applyDropdownToggler();
-dataCountDropdown.applyChoiceListener();
-
-const dataFormatDropdown = new Dropdown(
-  dataFormatMenu,
-  dataFormatButton,
-  dataFormatSelected,
-  dataFormatChoicesContainer,
-  dataFormatDropdownIcon
-);
-
-dataFormatDropdown.applyDropdownToggler();
-dataFormatDropdown.applyChoiceListener();
