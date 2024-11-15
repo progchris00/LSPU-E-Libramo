@@ -70,14 +70,14 @@ function renderBookRow(book) {
     `;
 }
 
-function displayErrorMessage(button, id) {
-  button.classList.add("border", "border-red-600");
-  document.getElementById(id).classList.remove("hidden");
-}
-
-function removeErrorMessage(button, id) {
-  button.classList.remove("border", "border-red-600");
-  document.getElementById(id).classList.add("hidden");
+function toggleErrorMessage(button, id, show) {
+  if (show) {
+    button.classList.add("border", "border-red-600");
+    document.getElementById(id).classList.remove("hidden");
+  } else {
+    button.classList.remove("border", "border-red-600");
+    document.getElementById(id).classList.add("hidden");
+  }
 }
 
 // Classes
@@ -194,16 +194,18 @@ document
     let dataFormat = dataFormatDropdown.getSelectedValue();
 
     if (!dataCount) {
-      displayErrorMessage(dataCountButton, "no-count");
+      toggleErrorMessage(dataCountButton, "no-count", true);
       return;
-    } else if (!dataFormat) {
-      removeErrorMessage(dataCountButton, "no-count");
-      displayErrorMessage(dataFormatButton, "no-format");
-      return;
+    } else {
+      toggleErrorMessage(dataCountButton, "no-count", false);
     }
 
-    removeErrorMessage(dataCountButton, "no-count");
-    removeErrorMessage(dataFormatButton, "no-format");
+    if (!dataFormat) {
+      toggleErrorMessage(dataFormatButton, "no-format", true);
+      return;
+    } else {
+      toggleErrorMessage(dataFormatButton, "no-format", false);
+    }
 
     skeletonContainer.classList.toggle("hidden");
     booksContainer.innerHTML = "";
