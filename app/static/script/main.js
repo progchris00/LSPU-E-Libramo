@@ -178,7 +178,7 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
 
 function addGlobalEventListener(type, selector, callback) {
   document.addEventListener(type, (e) => {
-    if (document.querySelector(selector).contains(e.target)) {
+    if (document.querySelector(selector)?.contains(e.target)) {
       callback();
     }
   });
