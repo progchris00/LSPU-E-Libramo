@@ -61,6 +61,7 @@ searchBox.addEventListener("input", async function () {
 document
   .getElementById("sort-button")
   .addEventListener("click", async function () {
+    let htmlRow = "";
     let dataCount = dataCountDropdown.getSelectedValue();
     let dataFormat = dataFormatDropdown.getSelectedValue();
 
@@ -68,24 +69,24 @@ document
       return;
     }
 
+    skeletonContainer.classList.toggle("hidden");
+    booksContainer.innerHTML = "";
+
     let response = await fetch(
       `/books/sort?count=${dataCount}&format=${dataFormat}`
     );
 
-    booksContainer.innerHTML = "";
-    skeletonContainer.classList.toggle("hidden");
+    let bookData = await response.json();
 
-    let book_data = await response.json();
-    let row_data = "";
-
-    book_data.books.forEach((book) => {
-      row_data += renderBookRow(book);
+    bookData.books.forEach((book) => {
+      htmlRow += renderBookRow(book);
     });
-    skeletonContainer.classList.toggle("hidden");
-    booksContainer.innerHTML = row_data;
 
-    displaySortingDetailsModal(book_data.time_execution, "Cocktail");
+    skeletonContainer.classList.toggle("hidden");
+    booksContainer.innerHTML = htmlRow;
+
     displayToastNotif();
+    displaySortingDetailsModal(bookData.time_execution, "Cocktail");
   });
 
 // Alert
