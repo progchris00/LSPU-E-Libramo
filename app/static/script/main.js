@@ -24,6 +24,78 @@ const dataFormatDropdownIcon = document.getElementById(
   "dataformat-dropdown-icon"
 );
 
+function displayToastNotif() {
+  toast.classList.remove("animate-slide-out-right");
+  toast.classList.add("animate-slide-in-right");
+  toast.classList.remove("hidden");
+  toast.classList.add("flex");
+}
+
+function displaySortingDetailsModal(timeExecution, sortingName) {
+  sortingNameContainer.textContent = "Sort name:";
+  generateContainer.textContent = "Data count:";
+  formatContainer.textContent = "Data format:";
+
+  sortingNameContainer.textContent += ` ${sortingName}`;
+  const sortTimeExecution = timeExecution;
+
+  executionContainer.textContent = sortTimeExecution;
+  generateContainer.textContent += ` ${dataCountDropdown.getSelectedValue()}`;
+  formatContainer.textContent += ` ${dataFormatDropdown.getSelectedValue()}`;
+
+  if (sortTimeExecution < 1) {
+    speedContainer.textContent = "Fast";
+    speedContainer.classList.remove(
+      "border-red-600",
+      "text-red-600",
+      "bg-red-200"
+    );
+    speedContainer.className += " border-green-600 text-green-600 bg-green-200";
+  } else if (sortTimeExecution > 2) {
+    speedContainer.textContent = "Slow";
+    speedContainer.classList.remove(
+      "border-green-600",
+      "text-green-600",
+      "bg-green-200"
+    );
+    speedContainer.className += " border-red-600 text-red-600 bg-red-200";
+  }
+}
+
+function addGlobalEventListener(type, selector, callback) {
+  document.addEventListener(type, (e) => {
+    if (document.querySelector(selector)?.contains(e.target)) {
+      callback();
+    }
+  });
+}
+
+function renderBookRow(book) {
+  const borrowerButtonColor =
+    book["is_borrowed"] == 1
+      ? "border-red-600 text-red-600 bg-red-200"
+      : "border-green-600 text-green-600 bg-green-200";
+  const borrowButtonStatus =
+    book["is_borrowed"] == 1 ? "Borrowed" : "Available";
+
+  bookView = book["title"].replace(" ", "-").toLowerCase();
+
+  return `
+    <tr class="text-md even:bg-gray-100">
+      <td class="px-3 py-1.5" data-cell="Book ID">${book["id"]} </td>
+      <td class="px-3 py-1.5" data-cell="Category">${book["category"]} </td>
+      <td class="px-3 py-1.5" data-cell="Book Title"><a href="books/${bookView}/view">${book["title"]}</a></td>
+      <td class="px-3 py-1.5" data-cell="Author">${book["author"]} </td>
+      <td class="px-3 py-1.5" data-cell="Pages">${book["pages"]} </td>
+      <td class="px-3 py-1.5" data-cell="Status">
+        <button class="rounded-md min-w-20 p-1 border ${borrowerButtonColor}">
+          ${borrowButtonStatus}
+        </button>
+      </td>
+    </tr>
+    `;
+}
+
 addGlobalEventListener("click", "#profile-button", () => {
   document.getElementById("profile-menu").classList.toggle("hidden");
 });
@@ -161,78 +233,6 @@ viewResultButton.addEventListener("click", () => {
   modal.classList.toggle("hidden");
   modal.classList.toggle("flex");
 });
-
-function displayToastNotif() {
-  toast.classList.remove("animate-slide-out-right");
-  toast.classList.add("animate-slide-in-right");
-  toast.classList.remove("hidden");
-  toast.classList.add("flex");
-}
-
-function displaySortingDetailsModal(timeExecution, sortingName) {
-  sortingNameContainer.textContent = "Sort name:";
-  generateContainer.textContent = "Data count:";
-  formatContainer.textContent = "Data format:";
-
-  sortingNameContainer.textContent += ` ${sortingName}`;
-  const sortTimeExecution = timeExecution;
-
-  executionContainer.textContent = sortTimeExecution;
-  generateContainer.textContent += ` ${dataCountDropdown.getSelectedValue()}`;
-  formatContainer.textContent += ` ${dataFormatDropdown.getSelectedValue()}`;
-
-  if (sortTimeExecution < 1) {
-    speedContainer.textContent = "Fast";
-    speedContainer.classList.remove(
-      "border-red-600",
-      "text-red-600",
-      "bg-red-200"
-    );
-    speedContainer.className += " border-green-600 text-green-600 bg-green-200";
-  } else if (sortTimeExecution > 2) {
-    speedContainer.textContent = "Slow";
-    speedContainer.classList.remove(
-      "border-green-600",
-      "text-green-600",
-      "bg-green-200"
-    );
-    speedContainer.className += " border-red-600 text-red-600 bg-red-200";
-  }
-}
-
-function addGlobalEventListener(type, selector, callback) {
-  document.addEventListener(type, (e) => {
-    if (document.querySelector(selector)?.contains(e.target)) {
-      callback();
-    }
-  });
-}
-
-function renderBookRow(book) {
-  const borrowerButtonColor =
-    book["is_borrowed"] == 1
-      ? "border-red-600 text-red-600 bg-red-200"
-      : "border-green-600 text-green-600 bg-green-200";
-  const borrowButtonStatus =
-    book["is_borrowed"] == 1 ? "Borrowed" : "Available";
-
-  bookView = book["title"].replace(" ", "-").toLowerCase();
-
-  return `
-    <tr class="text-md even:bg-gray-100">
-      <td class="px-3 py-1.5" data-cell="Book ID">${book["id"]} </td>
-      <td class="px-3 py-1.5" data-cell="Category">${book["category"]} </td>
-      <td class="px-3 py-1.5" data-cell="Book Title"><a href="books/${bookView}/view">${book["title"]}</a></td>
-      <td class="px-3 py-1.5" data-cell="Author">${book["author"]} </td>
-      <td class="px-3 py-1.5" data-cell="Pages">${book["pages"]} </td>
-      <td class="px-3 py-1.5" data-cell="Status">
-        <button class="rounded-md min-w-20 p-1 border ${borrowerButtonColor}">
-          ${borrowButtonStatus}
-        </button>
-      </td>
-    </tr>
-    `;
-}
 
 const dataCountDropdown = new Dropdown(
   dataCountMenu,
