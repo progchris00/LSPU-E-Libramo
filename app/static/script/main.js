@@ -1,5 +1,28 @@
+// Profile Menu
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
+
+// Data Count Dropdown
+const dataCountMenu = document.getElementById("datacount-dropdown");
+const dataCountButton = document.getElementById("datacount-button");
+const dataCountSelected = document.getElementById("datacount-selected");
+const dataCountChoicesContainer = document.getElementById(
+  "datacount-choice-container"
+);
+const dataCountDropdownIcon = document.getElementById(
+  "datacount-dropdown-icon"
+);
+
+// Data Format Dropdown
+const dataFormatMenu = document.getElementById("dataformat-dropdown");
+const dataFormatButton = document.getElementById("dataformat-button");
+const dataFormatSelected = document.getElementById("dataformat-selected");
+const dataFormatChoicesContainer = document.getElementById(
+  "dataformat-choice-container"
+);
+const dataFormatDropdownIcon = document.getElementById(
+  "dataformat-dropdown-icon"
+);
 
 addGlobalEventListener("click", "#profile-button", () => {
   document.getElementById("profile-menu").classList.toggle("hidden");
@@ -211,17 +234,6 @@ function renderBookRow(book) {
     `;
 }
 
-// Data Count Dropdown
-const dataCountMenu = document.getElementById("datacount-dropdown");
-const dataCountButton = document.getElementById("datacount-button");
-const dataCountSelected = document.getElementById("datacount-selected");
-const dataCountChoicesContainer = document.getElementById(
-  "datacount-choice-container"
-);
-const dataCountDropdownIcon = document.getElementById(
-  "datacount-dropdown-icon"
-);
-
 const dataCountDropdown = new Dropdown(
   dataCountMenu,
   dataCountButton,
@@ -232,17 +244,6 @@ const dataCountDropdown = new Dropdown(
 
 dataCountDropdown.applyDropdownToggler();
 dataCountDropdown.applyChoiceListener();
-
-// Data Format Dropdown
-const dataFormatMenu = document.getElementById("dataformat-dropdown");
-const dataFormatButton = document.getElementById("dataformat-button");
-const dataFormatSelected = document.getElementById("dataformat-selected");
-const dataFormatChoicesContainer = document.getElementById(
-  "dataformat-choice-container"
-);
-const dataFormatDropdownIcon = document.getElementById(
-  "dataformat-dropdown-icon"
-);
 
 const dataFormatDropdown = new Dropdown(
   dataFormatMenu,
