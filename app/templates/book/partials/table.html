@@ -1,0 +1,18 @@
+<table class="w-full text-sm">
+  <thead class="bg-thead-light text-heading-light">
+    <tr class="text-left">
+      <th class="p-3 font-semibold" scope="col">Book ID</th>
+      <th class="p-3 font-semibold" scope="col">Category</th>
+      <th class="p-3 font-semibold" scope="col">Book Title</th>
+      <th class="p-3 font-semibold" scope="col">Author</th>
+      <th class="p-3 font-semibold" scope="col">Pages</th>
+      <th class="p-3 font-semibold" scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody class="text-left text-md" id="books-container">
+    {% include 'book/partials/books-table.html' %}
+  </tbody>
+  <tbody class="text-left text-md hidden" id="skeleton-container">
+    {% include 'book/partials/skeleton.html' %}
+  </tbody>
+</table>

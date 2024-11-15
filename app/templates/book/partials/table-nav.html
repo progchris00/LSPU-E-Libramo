@@ -1,0 +1,132 @@
+<div class="max-w-full mx-auto">
+  <div class="flex items-center py-3 justify-between space-x-2">
+    <input
+      type="text"
+      id="search-box"
+      name="q"
+      placeholder="Search for books..."
+      class="p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 w-1/2 max-w-xs"
+    />
+    <div class="flex gap-2">
+      <!-- <div class="relative">
+              <button
+                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                id=""
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#ffffff"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </button>
+            </div> -->
+      <div class="relative">
+        <button
+          class="flex px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+          id="datacount-button"
+        >
+          <div class="flex items-center gap-2">
+            <span class="">Data count</span>
+            <img
+              src="{{ url_for('static', filename='images/dropdown.png')}}"
+              class="w-4"
+              id="datacount-dropdown-icon"
+            />
+          </div>
+          <span
+            id="datacount-selected"
+            class="text-blue-900 font-semibold"
+          ></span>
+        </button>
+        <div
+          class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
+          id="datacount-dropdown"
+        >
+          <div>
+            <ul id="datacount-choice-container">
+              <li
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                data-value="1000"
+              >
+                1,000
+              </li>
+              <li
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                data-value="5000"
+              >
+                5,000
+              </li>
+              <li
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                data-value="10000"
+              >
+                10,000
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <button
+          class="flex justify-center items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+          id="dataformat-button"
+        >
+          <div class="flex items-center gap-2">
+            <span class="">Data format</span>
+            <img
+              src="{{ url_for('static', filename='images/dropdown.png')}}"
+              class="w-4"
+              id="dataformat-dropdown-icon"
+            />
+          </div>
+          <span
+            id="dataformat-selected"
+            class="text-blue-900 font-semibold"
+          ></span>
+        </button>
+        <div
+          class="absolute right-0 top-8 w-44 bg-white border border-gray-200 rounded-md shadow-lg z-10 p-2 hidden"
+          id="dataformat-dropdown"
+        >
+          <div>
+            <ul id="dataformat-choice-container">
+              <li
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                data-value="sorted"
+              >
+                Sorted
+              </li>
+              <li
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                data-value="random"
+              >
+                Random
+              </li>
+              <li
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                data-value="reverse"
+              >
+                Reverse
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button
+        class="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-600"
+        id="sort-button"
+      >
+        Cocktail sort
+      </button>
+    </div>
+  </div>
+</div>
