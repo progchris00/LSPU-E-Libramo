@@ -1,5 +1,13 @@
-document.getElementById("profile-button")?.addEventListener("click", () => {
-  document.getElementById("profile-menu")?.classList.toggle("hidden");
+function addGlobalEventListener(type, selector, callback) {
+  document.addEventListener(type, (e) => {
+    if (document.querySelector(selector).contains(e.target)) {
+      callback();
+    }
+  });
+}
+
+addGlobalEventListener("click", "#profile-button", () => {
+  document.getElementById("profile-menu").classList.toggle("hidden");
 });
 
 // Classes
@@ -58,32 +66,33 @@ searchBox.addEventListener("input", async function () {
 const booksContainer = document.getElementById("books-container");
 const skeletonContainer = document.getElementById("skeleton-container");
 
-const sortButton = document.getElementById("sort-button");
-sortButton.addEventListener("click", async function () {
-  let count = dataCountDropdown.getSelectedValue();
-  let format = dataFormatDropdown.getSelectedValue();
+document
+  .getElementById("sort-button")
+  .addEventListener("click", async function () {
+    let count = dataCountDropdown.getSelectedValue();
+    let format = dataFormatDropdown.getSelectedValue();
 
-  if (!count || !format) {
-    return;
-  }
-
-  booksContainer.innerHTML = "";
-  skeletonContainer.classList.toggle("hidden");
-  let response = await fetch(`/books/sort?count=${count}&format=${format}`);
-  let book_data = await response.json();
-  let row_data = "";
-  let borrowerColor;
-  let borrowerStatus;
-
-  book_data.books.forEach((book) => {
-    if (book["is_borrowed"] == 1) {
-      borrowerColor = "border-red-600 text-red-600 bg-red-200";
-      borrowerStatus = "Borrowed";
-    } else {
-      borrowerColor = "border-green-600 text-green-600 bg-green-200";
-      borrowerStatus = "Available";
+    if (!count || !format) {
+      return;
     }
-    row_data += `
+
+    booksContainer.innerHTML = "";
+    skeletonContainer.classList.toggle("hidden");
+    let response = await fetch(`/books/sort?count=${count}&format=${format}`);
+    let book_data = await response.json();
+    let row_data = "";
+    let borrowerColor;
+    let borrowerStatus;
+
+    book_data.books.forEach((book) => {
+      if (book["is_borrowed"] == 1) {
+        borrowerColor = "border-red-600 text-red-600 bg-red-200";
+        borrowerStatus = "Borrowed";
+      } else {
+        borrowerColor = "border-green-600 text-green-600 bg-green-200";
+        borrowerStatus = "Available";
+      }
+      row_data += `
         <tr>
           <td class="px-3 py-1.5">${book["id"]} </td>
           <td class="px-3 py-1.5">${book["category"]} </td>
@@ -99,13 +108,13 @@ sortButton.addEventListener("click", async function () {
           </td>
         </tr>
         `;
-  });
-  skeletonContainer.classList.toggle("hidden");
-  booksContainer.innerHTML = row_data;
+    });
+    skeletonContainer.classList.toggle("hidden");
+    booksContainer.innerHTML = row_data;
 
-  displaySortingDetailsModal(book_data.time_execution, "Cocktail");
-  displayToastNotif();
-});
+    displaySortingDetailsModal(book_data.time_execution, "Cocktail");
+    displayToastNotif();
+  });
 
 // Alert
 const toast = document.getElementById("toast-default");
