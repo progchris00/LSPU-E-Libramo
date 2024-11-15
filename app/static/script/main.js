@@ -195,13 +195,13 @@ function renderBookRow(book) {
   bookView = book["title"].replace(" ", "-").toLowerCase();
 
   return `
-    <tr>
-      <td class="px-3 py-1.5">${book["id"]} </td>
-      <td class="px-3 py-1.5">${book["category"]} </td>
-      <td class="px-3 py-1.5"><a href="books/${bookView}/view">${book["title"]}</a></td>
-      <td class="px-3 py-1.5">${book["author"]} </td>
-      <td class="px-3 py-1.5">${book["pages"]} </td>
-      <td class="px-3 py-1.5">
+    <tr class="text-md even:bg-gray-100">
+      <td class="px-3 py-1.5" data-cell="Book ID">${book["id"]} </td>
+      <td class="px-3 py-1.5" data-cell="Category">${book["category"]} </td>
+      <td class="px-3 py-1.5" data-cell="Book Title"><a href="books/${bookView}/view">${book["title"]}</a></td>
+      <td class="px-3 py-1.5" data-cell="Author">${book["author"]} </td>
+      <td class="px-3 py-1.5" data-cell="Pages">${book["pages"]} </td>
+      <td class="px-3 py-1.5" data-cell="Status">
         <button class="rounded-md min-w-20 p-1 border ${borrowerButtonColor}">
           ${borrowButtonStatus}
         </button>
