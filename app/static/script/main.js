@@ -70,6 +70,16 @@ function renderBookRow(book) {
     `;
 }
 
+function displayErrorMessage(button, id) {
+  button.classList.add("border", "border-red-600");
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function removeErrorMessage(button, id) {
+  button.classList.remove("border", "border-red-600");
+  document.getElementById(id).classList.add("hidden");
+}
+
 // Classes
 class Dropdown {
   constructor(menu, button, selected, choicesContainer, icon) {
@@ -183,9 +193,17 @@ document
     let dataCount = dataCountDropdown.getSelectedValue();
     let dataFormat = dataFormatDropdown.getSelectedValue();
 
-    if (!dataCount || !dataFormat) {
+    if (!dataCount) {
+      displayErrorMessage(dataCountButton, "no-count");
+      return;
+    } else if (!dataFormat) {
+      removeErrorMessage(dataCountButton, "no-count");
+      displayErrorMessage(dataFormatButton, "no-format");
       return;
     }
+
+    removeErrorMessage(dataCountButton, "no-count");
+    removeErrorMessage(dataFormatButton, "no-format");
 
     skeletonContainer.classList.toggle("hidden");
     booksContainer.innerHTML = "";
