@@ -52,7 +52,7 @@ def view(title):
     return render_template("book/view.html", book=book)
 
 
-@bp.route("/sort")
+@bp.route("/sort", methods=("GET", "POST"))
 def sort():
     sort_type = "cocktail"
     data_count = request.args.get("count", "")
