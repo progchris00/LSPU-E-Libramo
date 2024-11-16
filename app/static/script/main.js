@@ -161,6 +161,20 @@ const toast = document.getElementById("toast-default");
 const closeButton = document.getElementById("close-toast");
 const toastViewDetails = document.getElementById("view-details-button");
 
+// Modal
+const executionContainer = document.getElementById("time-execution-container");
+const sortingNameContainer = document.getElementById("sorting-name-container");
+const speedContainer = document.getElementById("speed-container");
+const generateContainer = document.getElementById(
+  "sorting-generate-data-container"
+);
+const formatContainer = document.getElementById(
+  "sorting-data-format-container"
+);
+const modal = document.getElementById("default-modal");
+const modalCloseButton = document.getElementById("close-modal");
+const viewResultButton = document.getElementById("view-result");
+
 // Class instantiation
 const dataCountDropdown = new Dropdown(
   dataCountMenu,
@@ -244,20 +258,6 @@ document
     slideInToast();
     displaySortingDetailsModal(bookData.time_execution, "Cocktail");
   });
-
-// Modal
-const executionContainer = document.getElementById("time-execution-container");
-const sortingNameContainer = document.getElementById("sorting-name-container");
-const speedContainer = document.getElementById("speed-container");
-const generateContainer = document.getElementById(
-  "sorting-generate-data-container"
-);
-const formatContainer = document.getElementById(
-  "sorting-data-format-container"
-);
-const modal = document.getElementById("default-modal");
-const modalCloseButton = document.getElementById("close-modal");
-const viewResultButton = document.getElementById("view-result");
 
 closeButton.addEventListener("click", function () {
   slideOutToast();
