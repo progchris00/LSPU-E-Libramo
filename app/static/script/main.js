@@ -145,6 +145,11 @@ const dataFormatDropdownIcon = document.getElementById(
   "dataformat-dropdown-icon"
 );
 
+// Toast notification
+const toast = document.getElementById("toast-default");
+const closeButton = document.getElementById("close-toast");
+const toastViewDetails = document.getElementById("view-details-button");
+
 // Class instantiation
 const dataCountDropdown = new Dropdown(
   dataCountMenu,
@@ -226,11 +231,6 @@ document
     displayToastNotif();
     displaySortingDetailsModal(bookData.time_execution, "Cocktail");
   });
-
-// Alert
-const toast = document.getElementById("toast-default");
-const closeButton = document.getElementById("close-toast");
-const toastViewDetails = document.getElementById("view-details-button");
 
 // Modal
 const executionContainer = document.getElementById("time-execution-container");
