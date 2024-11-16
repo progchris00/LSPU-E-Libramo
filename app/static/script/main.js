@@ -1,8 +1,19 @@
-function displayToastNotif() {
+function slideInToast() {
   toast.classList.remove("animate-slide-out-right");
   toast.classList.add("animate-slide-in-right");
   toast.classList.remove("hidden");
   toast.classList.add("flex");
+}
+
+function slideOutToast() {
+  return new Promise((resolve) => {
+    toast.classList.add("animate-slide-out-right");
+    toast.classList.remove("animate-slide-in-right");
+    setTimeout(function () {
+      toast.classList.add("hidden");
+      resolve();
+    }, 500);
+  });
 }
 
 function displaySortingDetailsModal(timeExecution, sortingName) {
@@ -194,6 +205,8 @@ searchBox.addEventListener("input", async function () {
 document
   .getElementById("sort-button")
   .addEventListener("click", async function () {
+    await slideOutToast();
+
     let htmlRow = "";
     let dataCount = dataCountDropdown.getSelectedValue();
     let dataFormat = dataFormatDropdown.getSelectedValue();
@@ -228,7 +241,7 @@ document
     skeletonContainer.classList.toggle("hidden");
     booksContainer.innerHTML = htmlRow;
 
-    displayToastNotif();
+    slideInToast();
     displaySortingDetailsModal(bookData.time_execution, "Cocktail");
   });
 
@@ -247,12 +260,7 @@ const modalCloseButton = document.getElementById("close-modal");
 const viewResultButton = document.getElementById("view-result");
 
 closeButton.addEventListener("click", function () {
-  toast.classList.remove("animate-slide-in-right");
-  toast.classList.add("animate-slide-out-right");
-
-  setTimeout(function () {
-    toast.classList.add("hidden");
-  }, 500);
+  slideOutToast();
 });
 
 // Toast logic
