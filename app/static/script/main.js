@@ -219,8 +219,6 @@ searchBox.addEventListener("input", async function () {
 document
   .getElementById("sort-button")
   .addEventListener("click", async function () {
-    await slideOutToast();
-
     let htmlRow = "";
     let dataCount = dataCountDropdown.getSelectedValue();
     let dataFormat = dataFormatDropdown.getSelectedValue();
@@ -231,6 +229,8 @@ document
     } else {
       toggleErrorMessage(dataCountButton, "no-count", false);
     }
+
+    await slideOutToast();
 
     if (!dataFormat) {
       toggleErrorMessage(dataFormatButton, "no-format", true);
