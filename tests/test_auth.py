@@ -1,12 +1,12 @@
 import pytest
 from flask import g, session
-from flaskr.db import get_db
+from app.db import get_db
 
 
 def test_register(client, app):
     assert client.get('/auth/register').status_code == 200
     response = client.post(
-        '/auth/register', data={'username': 'a', 'password': 'a'}
+        '/auth/register', data={'username': 'a', 'course': 'BSCS', 'password': 'a'}
     )
     assert response.headers["Location"] == "/auth/login"
 
@@ -16,22 +16,22 @@ def test_register(client, app):
         ).fetchone() is not None
 
 
-@pytest.mark.parametrize(('username', 'password', 'message'), (
-    ('', '', b'Username is required.'),
-    ('a', '', b'Password is required.'),
-    ('test', 'test', b'already registered'),
+@pytest.mark.parametrize(('username', 'course', 'password', 'message'), (
+    ('', 'test', 'test', b'Username is required.'),
+    ('a', 'test', '', b'Password is required.'),
+    ('test', 'test', 'test', b'already registered'),
 ))
-def test_register_validate_input(client, username, password, message):
+def test_register_validate_input(client, username, course, password, message):
     response = client.post(
         '/auth/register',
-        data={'username': username, 'password': password}
+        data={'username': username, 'course': course, 'password': password}
     )
     assert message in response.data
 
 def test_login(client, auth):
     assert client.get('/auth/login').status_code == 200
     response = auth.login()
-    assert response.headers["Location"] == "/"
+    assert response.headers["Location"] == "/books"
 
     with client:
         client.get('/')

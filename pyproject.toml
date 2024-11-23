@@ -1,0 +1,19 @@
+[project]
+name = "app"
+version = "1.0.0"
+description = "Book management system utilizing various sorting algorithms"
+dependencies = [
+    "flask",
+    "faker",
+]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["app"]
