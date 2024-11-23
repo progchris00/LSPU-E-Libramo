@@ -14,7 +14,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        course = request.form['course']
+        course = request.form.get('course')
 
         db = get_db()
         error = None
@@ -24,7 +24,7 @@ def register():
         elif not password:
             error = 'Password is required.'
         elif not course:
-            error = 'Course is requred.'
+            error = 'Course is required.'
 
         if error is None:
             try:

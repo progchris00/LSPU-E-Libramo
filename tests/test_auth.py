@@ -18,6 +18,7 @@ def test_register(client, app):
 
 @pytest.mark.parametrize(('username', 'course', 'password', 'message'), (
     ('', 'test', 'test', b'Username is required.'),
+    ('a', '', 'test', b'Course is required.'),
     ('a', 'test', '', b'Password is required.'),
     ('test', 'test', 'test', b'already registered'),
 ))
