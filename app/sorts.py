@@ -54,43 +54,117 @@ class TreeNode:
         self.book = book
         self.left = None
         self.right = None
+        self.height = 1  # Height of the node (initially 1)
 
-class TreeSort:
+class AVLTreeSort:
     def __init__(self, key):
         self.root = None
         self.key = key
     
     def insert(self, book):
+        """Insert a book into the AVL tree and balance it."""
         if self.root is None:
             self.root = TreeNode(book)
         else:
-            self._insert(self.root, book)
+            self.root = self._insert(self.root, book)
     
     def _insert(self, node, book):
+        """Recursively insert a book into the AVL tree and balance it."""
+        if node is None:
+            return TreeNode(book)
+        
+        # Insert the book like a regular BST
         if book[self.key] < node.book[self.key]:
-            if node.left is None:
-                node.left = TreeNode(book)
-            else:
-                self._insert(node.left, book)
+            node.left = self._insert(node.left, book)
+        elif book[self.key] > node.book[self.key]:
+            node.right = self._insert(node.right, book)
         else:
-            if node.right is None:
-                node.right = TreeNode(book)
-            else:
-                self._insert(node.right, book)
+            return node  # Duplicate keys are not inserted
+
+        # Update the height of the node
+        node.height = 1 + max(self._get_height(node.left), self._get_height(node.right))
+
+        # Balance the node if needed
+        balance = self._get_balance(node)
+        
+        # Left Heavy (Left-Left case)
+        if balance > 1 and book[self.key] < node.left.book[self.key]:
+            return self._rotate_right(node)
+        
+        # Right Heavy (Right-Right case)
+        if balance < -1 and book[self.key] > node.right.book[self.key]:
+            return self._rotate_left(node)
+        
+        # Left-Right case
+        if balance > 1 and book[self.key] > node.left.book[self.key]:
+            node.left = self._rotate_left(node.left)
+            return self._rotate_right(node)
+        
+        # Right-Left case
+        if balance < -1 and book[self.key] < node.right.book[self.key]:
+            node.right = self._rotate_right(node.right)
+            return self._rotate_left(node)
+
+        return node
     
+    def _rotate_left(self, z):
+        """Left rotation to balance the tree."""
+        y = z.right
+        T2 = y.left
+
+        # Perform rotation
+        y.left = z
+        z.right = T2
+
+        # Update heights
+        z.height = 1 + max(self._get_height(z.left), self._get_height(z.right))
+        y.height = 1 + max(self._get_height(y.left), self._get_height(y.right))
+
+        return y
+
+    def _rotate_right(self, z):
+        """Right rotation to balance the tree."""
+        y = z.left
+        T3 = y.right
+
+        # Perform rotation
+        y.right = z
+        z.left = T3
+
+        # Update heights
+        z.height = 1 + max(self._get_height(z.left), self._get_height(z.right))
+        y.height = 1 + max(self._get_height(y.left), self._get_height(y.right))
+
+        return y
+
+    def _get_height(self, node):
+        """Get the height of a node."""
+        if not node:
+            return 0
+        return node.height
+
+    def _get_balance(self, node):
+        """Get the balance factor of a node."""
+        if not node:
+            return 0
+        return self._get_height(node.left) - self._get_height(node.right)
+
     def inorder(self):
+        """Return a sorted list of books in-order."""
         books = []
         self._inorder(self.root, books)
         return books
     
     def _inorder(self, node, books):
+        """Helper function to traverse the tree in-order."""
         if node:
             self._inorder(node.left, books)
             books.append(node.book)
             self._inorder(node.right, books)
 
 def tree_sort(data, key):
-    tree = TreeSort(key)
+    """Sort a list of books based on the given key."""
+    tree = AVLTreeSort(key)
     
     for book in data:
         tree.insert(book)
