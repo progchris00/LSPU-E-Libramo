@@ -27,8 +27,8 @@ def index():
         target_books = [book for book in all_books if book["category"] == target_category]
         other_books = [book for book in all_books if book["category"] != target_category]
 
-        sorted_target_books = cocktail_sort(target_books, "rating")
-        sorted_other_books = cocktail_sort(other_books, "rating")
+        sorted_target_books = tree_sort(target_books, "rating")
+        sorted_other_books = tree_sort(other_books, "rating")
 
         books = sorted_target_books + other_books
 
