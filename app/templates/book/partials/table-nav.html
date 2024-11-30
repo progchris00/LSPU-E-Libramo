@@ -35,7 +35,8 @@
           id="datacount-button"
         >
           <div class="flex items-center gap-2">
-            <span class="">Data count</span>
+            <span class="hidden md:block">Data count</span>
+            <span class="block md:hidden">Count</span>
             <img
               src="{{ url_for('static', filename='images/dropdown.png')}}"
               class="w-4"
@@ -87,7 +88,8 @@
           id="dataformat-button"
         >
           <div class="flex items-center gap-2">
-            <span class="">Data format</span>
+            <span class="hidden md:block">Data format</span>
+            <span class="block md:hidden">Format</span>
             <img
               src="{{ url_for('static', filename='images/dropdown.png')}}"
               class="w-4"
@@ -137,7 +139,8 @@
         class="px-4 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-900"
         id="sort-button"
       >
-        Cocktail sort
+        <span class="hidden md:block">Cocktail sort</span>
+        <span class="block md:hidden">Sort</span>
       </button>
     </div>
   </div>
