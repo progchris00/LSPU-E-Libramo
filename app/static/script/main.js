@@ -203,18 +203,43 @@ addGlobalEventListener("click", "#profile-button", () => {
 });
 
 // Ajax searching
-let searchBox = document.getElementById("search-box");
-searchBox.addEventListener("input", async function () {
-  let response = await fetch("/books/search?q=" + searchBox.value);
+const searchBox = document.getElementById("search-box");
 
-  const booksContainer = document.getElementById("books-container");
+const updateDebounceText = debounce(async (query) => {
+  try {
+    let response = await fetch(`/books/search?q=${encodeURIComponent(query)}`);
 
-  booksContainer.innerHTML = "";
+    booksContainer.innerHTML = "";
 
-  const html = await response.text();
+    if (response.ok) {
+      const html = await response.text();
 
-  booksContainer.innerHTML += html;
+      booksContainer.innerHTML += html;
+    } else {
+      booksContainer.innerHTML =
+        "<p>Failed to load books. Please try again.</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    booksContainer.innerHTML =
+      "<p>Error fetching books. Please try again later.</p>";
+  }
 });
+
+searchBox.addEventListener("input", () => {
+  updateDebounceText(searchBox.value);
+});
+
+function debounce(cb, delay = 1000) {
+  let timeout;
+
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      cb(...args);
+    }, delay);
+  };
+}
 
 document
   .getElementById("sort-button")
