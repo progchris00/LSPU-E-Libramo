@@ -16,10 +16,11 @@ function slideOutToast() {
   });
 }
 
-function displaySortingDetailsModal(timeExecution, sortingName) {
+function displaySortingDetailsModal(timeExecution, memory, sortingName) {
   sortingNameContainer.textContent = "Sort name:";
   generateContainer.textContent = "Data count:";
   formatContainer.textContent = "Data format:";
+  memoryContainer.textContent = "Memory:";
 
   sortingNameContainer.textContent += ` ${sortingName}`;
   const sortTimeExecution = timeExecution;
@@ -27,6 +28,7 @@ function displaySortingDetailsModal(timeExecution, sortingName) {
   executionContainer.textContent = sortTimeExecution;
   generateContainer.textContent += ` ${dataCountDropdown.getSelectedValue()}`;
   formatContainer.textContent += ` ${dataFormatDropdown.getSelectedValue()}`;
+  memoryContainer.textContent += ` ${(memory / 1000).toFixed(2)} KB`;
 
   if (sortTimeExecution < 1) {
     speedContainer.textContent = "Fast";
@@ -164,6 +166,7 @@ const toastViewDetails = document.getElementById("view-details-button");
 // Modal
 const executionContainer = document.getElementById("time-execution-container");
 const sortingNameContainer = document.getElementById("sorting-name-container");
+const memoryContainer = document.getElementById("memory-container");
 const speedContainer = document.getElementById("speed-container");
 const generateContainer = document.getElementById(
   "sorting-generate-data-container"
@@ -273,6 +276,21 @@ document
 
     let bookData = await response.json();
 
+    let memory;
+
+    const resources = performance.getEntriesByType("resource");
+    resources.forEach((resource) => {
+      if (
+        resource.name.replace("http://127.0.0.1:5000", "") ===
+        `/books/sort?count=${dataCount}&format=${dataFormat}`
+      ) {
+        memory = resource.transferSize;
+      }
+    });
+
+    console.log(memory);
+    console.log(memory / 1000);
+
     bookData.books.forEach((book) => {
       htmlRow += renderBookRow(book);
     });
@@ -281,7 +299,7 @@ document
     booksContainer.innerHTML = htmlRow;
 
     slideInToast();
-    displaySortingDetailsModal(bookData.time_execution, "Cocktail");
+    displaySortingDetailsModal(bookData.time_execution, memory, "Cocktail");
   });
 
 closeButton.addEventListener("click", function () {
