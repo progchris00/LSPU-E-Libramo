@@ -103,10 +103,12 @@ def get_sorted_book(data_count, data_format, sort_type):
         books = db.execute(f"SELECT * FROM medium_sorted {order_by[data_format]}").fetchall()
     elif data_count == "10000":
         books = db.execute(f"SELECT * FROM large_sorted {order_by[data_format]}").fetchall()
+    else:
+        books = db.execute(f"SELECT * FROM large_sorted {order_by[data_format]} LIMIT {data_count}").fetchall()
 
     books = [book for book in books]
 
-    start_time = time.time()
+    start_time = time.perf_counter()
 
     if sort_type == "cocktail":
         sorted_books = cocktail_sort(books, "title")
@@ -115,6 +117,6 @@ def get_sorted_book(data_count, data_format, sort_type):
     elif sort_type == "treesort":
         sorted_books = tree_sort(books, "title")
 
-    time_execution = time.time() - start_time
+    time_execution = time.perf_counter() - start_time
 
     return sorted_books, time_execution
